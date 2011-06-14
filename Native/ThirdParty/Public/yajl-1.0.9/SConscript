@@ -1,0 +1,22 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+import os
+Import('env')
+
+yajlEnv = env.Clone()
+yajlIncludeDir = yajlEnv.Dir( os.path.join('src','src','api') )
+yajlEnv.Append( CPPPATH=[yajlIncludeDir] )
+if yajlEnv['FABRIC_BUILD_OS'] == 'Windows':
+  yajlEnv.Append( CPPDEFINES = ['WIN32'] )
+builtYAJL = yajlEnv.StaticLibrary(
+  target = 'yajl-1.0.9',
+  source = Glob( os.path.join( 'src', 'src', '*.c' ) )
+  )
+
+yajlFlags = {
+	'CPPPATH': [yajlIncludeDir],
+	'LIBS': [builtYAJL]
+}
+Export( 'yajlFlags' )

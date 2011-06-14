@@ -1,0 +1,177 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+import os, platform, posixpath, glob
+
+CacheDir( '.sconscache' )
+
+buildOS = platform.system()
+Export( 'buildOS' );
+buildArch = ARGUMENTS.get( 'ARCH', platform.machine() )
+Export( 'buildArch' )
+buildType = ARGUMENTS.get( 'TYPE', 'Debug' )
+Export( 'buildType' )
+thirdPartyDir = os.path.join(os.getcwd(), 'ThirdParty' )
+
+FABRIC_VERSION_MAJ='1'
+FABRIC_VERSION_MIN='0'
+FABRIC_VERSION_REV='0'
+FABRIC_VERSION_BUILD='1'
+
+template = Builder( action = "sed s/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g <$SOURCE | sed s/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g | sed s/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g | sed s/{{FABRIC_VERSION_BUILD}}/"+FABRIC_VERSION_BUILD+"/g >$TARGET")
+
+env = Environment(
+  ENV={ 'PATH': os.environ['PATH']+os.pathsep+os.path.join(thirdPartyDir,'bin',buildOS) },
+  FABRIC_BUILD_OS=buildOS,
+  FABRIC_BUILD_ARCH=buildArch,
+  FABRIC_BUILD_TYPE=buildType,
+  TARGET_ARCH = buildArch
+  )
+
+if buildOS == 'Windows':
+  env['ENV']['TMP'] = os.environ['TMP']
+
+if not ARGUMENTS.get( 'VERBOSE' ):
+	env['CCCOMSTR']       = 'Compiling       $SOURCE'
+	env['CXXCOMSTR']      = 'Compiling       $SOURCE'
+	env['SHCCCOMSTR']     = 'Compiling       $SOURCE'
+	env['SHCXXCOMSTR']    = 'Compiling       $SOURCE'
+	env['YACCCOMSTR']     = 'Bison           $SOURCE'
+	env['ARCOMSTR']       = 'StaticLibrary   $TARGET'
+	env['SHLINKCOMSTR']   = 'SharedLibrary   $TARGET'
+	env['RANLIBCOMSTR']   = 'Ranlib          $TARGET'
+	env['LINKCOMSTR']     = 'Linking         $TARGET'
+	env['LDMODULECOMSTR'] = 'LoadableModule  $TARGET'
+env.Append( BUILDERS = { 'Template': template } )
+
+if buildType == 'Release':
+  env.Append( CPPDEFINES = 'NDEBUG' )
+
+if buildOS == 'Windows' and buildType == 'Debug':
+  env.Append( PDB='${TARGET.base}.pdb' )
+
+env.Append( CPPDEFINES = [
+  "FABRIC_VERSION_MAJ=\\\""+FABRIC_VERSION_MAJ+"\\\"",
+  "FABRIC_VERSION_MIN=\\\""+FABRIC_VERSION_MIN+"\\\"",
+  "FABRIC_VERSION_REV=\\\""+FABRIC_VERSION_REV+"\\\"",
+  "FABRIC_VERSION_BUILD=\\\""+FABRIC_VERSION_BUILD+"\\\"",
+] )
+
+# check for buildOS specific flags
+buildFlags = { 
+  # === OSX ===
+  'Darwin': {
+    'ccflags': [ '-fvisibility=hidden' ],
+    'cxxflags': [ '-fno-rtti' ],
+    'linkflags' : [ '-w' ],
+    'i386' : {
+      'ccflags': [ '-m32' ],
+      'linkflags': [ '-m32' ]
+      },
+    'x86_64' : {
+      'ccflags': [ '-m64' ],
+      'linkflags': [ '-m64' ]
+      },
+    'Debug' : {
+      'ccflags': [ '-g' ]
+      },
+    'Release' : {
+      'ccflags': [ '-O2' ]
+      },
+    }, 
+  # === LINUX ===
+  'Linux': {
+    'ccflags': ['-fPIC'],
+    'cxxflags': [ '-fno-rtti' ],
+    'i686' : {
+      'ccflags': [ '-m32' ],
+      'linkflags': [ '-m32' ]
+      },
+    'x86_64' : {
+      'ccflags': [ '-m64' ],
+      'linkflags': [ '-m64' ]
+      },
+    'Debug' : {
+      'ccflags': [ '-g' ]
+      },
+    'Release' : {
+      'ccflags': [ '-O2' ]
+      },
+    }, 
+  # === WINDOWS ===
+  'Windows': {
+    'ccDefs': [ 
+      '_SCL_SECURE_NO_WARNINGS=1',
+      '_ITERATOR_DEBUG_LEVEL=0',
+      '_SECURE_SCL=0'
+    ],
+    'ccflags': [ 
+      '/GR-', '/EHsc', 
+      '/wd4624'    ],
+    'linkflags': [ 'chkstk.obj' ],
+    'x86' : {
+      'ccflags': [ ],
+      'linkflags': [ ]
+      },
+    'AMD64' : {
+      'ccflags': [ ],
+      'linkflags': [ ]
+      },
+    'Debug' : {
+      'ccflags': [ '/Od', '/Z7', '/MDd' ]
+      },
+    'Release' : {
+      'ccflags': [ '/Ox', '/MD' ]
+      },
+    }
+  }
+
+osFlags = buildFlags[buildOS]
+
+if 'ccDefs' in osFlags:
+  env.Append( CPPDEFINES = osFlags['ccDefs'] )  
+if 'ccflags' in osFlags:
+  env.Append( CCFLAGS = osFlags['ccflags'] )
+if 'cxxflags' in osFlags:
+  env.Append( CXXFLAGS = osFlags['cxxflags'] )
+if 'linkflags' in osFlags:
+  env.Append( LINKFLAGS = osFlags['linkflags'] )
+
+subTypes = [ buildArch, buildType ]
+
+for subType in subTypes:
+  if subType in osFlags:
+    osSubFlags = osFlags[subType]
+    if 'ccDefs' in osSubFlags:
+      env.Append( CPPDEFINES = osSubFlags['ccDefs'] )  
+    if 'ccflags' in osSubFlags:
+      env.Append( CCFLAGS = osSubFlags['ccflags'] )
+    if 'cxxflags' in osSubFlags:
+      env.Append( CXXFLAGS = osSubFlags['cxxflags'] )
+    if 'linkflags' in osSubFlags:
+      env.Append( LINKFLAGS = osSubFlags['linkflags'] )
+
+buildDirBase = os.path.join( '#build', buildOS, buildArch, buildType )
+buildDir = os.path.join( buildDirBase, 'Fabric' )
+
+distDir = '#dist'
+archDistDir = os.path.join( distDir, buildOS, buildArch, buildType )
+if buildOS == "Darwin":
+  npapiDistDir = os.path.join( archDistDir, 'Fabric NPAPI Plugin', 'Library', 'Internet Plug-Ins' )
+  fabricExtsDistDir = os.path.join( archDistDir, 'Fabric NPAPI Plugin', 'Library', 'Fabric', 'Exts' )
+else:
+  npapiDistDir = os.path.join( archDistDir, 'NPAPI' )
+  fabricExtsDistDir = os.path.join( archDistDir, 'Exts' )
+Export( 'npapiDistDir', 'fabricExtsDistDir' )
+
+env.Append( CPPPATH=[buildDirBase] )
+Export( 'env' )
+
+SConscript( dirs=['ThirdParty'], variant_dir=os.path.join( buildDir, 'ThirdParty' ) )
+SConscript( dirs=['Base'], variant_dir=os.path.join( buildDir, 'Base' ) )
+SConscript( dirs=['Core'], variant_dir=os.path.join( buildDir, 'Core' ) )
+SConscript( dirs=['Tools'], variant_dir=os.path.join( buildDir, 'Tools' ) )
+SConscript( dirs=['Clients'], variant_dir=os.path.join( buildDir, 'Clients' ) )
+SConscript( dirs=['EDK'], variant_dir=os.path.join( buildDir, 'EDK' ) )
+SConscript( dirs=['Exts'], variant_dir=os.path.join( buildDir, 'Exts' ) )

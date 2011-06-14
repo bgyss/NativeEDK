@@ -1,0 +1,15 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+import os
+
+exts = []
+
+SConscript( dirs=['Samples'] )
+exts += ['sampleExts']
+
+SConscript( dirs=['Builtin'] )
+exts += ['builtinExts']
+    
+Alias( 'exts', exts )

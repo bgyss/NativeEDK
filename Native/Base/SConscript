@@ -1,0 +1,9 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+Import( 'env' );
+baseEnv = env.Clone()
+Export( 'baseEnv' );
+
+SConscript( dirs=['RC','JSON'] )

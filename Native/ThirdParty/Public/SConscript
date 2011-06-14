@@ -1,0 +1,5 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+SConscript( dirs=['yajl-1.0.9'] )

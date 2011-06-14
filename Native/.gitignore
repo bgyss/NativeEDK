@@ -1,0 +1,4 @@
+.sconscache/
+.sconsign.dblite
+build/
+dist/

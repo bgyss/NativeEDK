@@ -1,0 +1,7 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+Import( 'baseEnv', 'yajlFlags' )
+baseEnv.MergeFlags( yajlFlags )
+baseEnv.Prepend( LIBS = baseEnv.StaticLibrary( 'RC', Glob('*.cpp') ) )
