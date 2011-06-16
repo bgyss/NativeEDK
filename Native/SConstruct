@@ -17,9 +17,9 @@ thirdPartyDir = os.path.join(os.getcwd(), 'ThirdParty' )
 FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
 FABRIC_VERSION_REV='0'
-FABRIC_VERSION_BUILD='1'
+FABRIC_VERSION_SUFFIX='-alpha1'
 
-template = Builder( action = "sed s/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g <$SOURCE | sed s/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g | sed s/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g | sed s/{{FABRIC_VERSION_BUILD}}/"+FABRIC_VERSION_BUILD+"/g >$TARGET")
+template = Builder( action = "sed s/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g <$SOURCE | sed s/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g | sed s/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g | sed s/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g >$TARGET")
 
 env = Environment(
   ENV={ 'PATH': os.environ['PATH']+os.pathsep+os.path.join(thirdPartyDir,'bin',buildOS) },
@@ -50,13 +50,6 @@ if buildType == 'Release':
 
 if buildOS == 'Windows' and buildType == 'Debug':
   env.Append( PDB='${TARGET.base}.pdb' )
-
-env.Append( CPPDEFINES = [
-  "FABRIC_VERSION_MAJ=\\\""+FABRIC_VERSION_MAJ+"\\\"",
-  "FABRIC_VERSION_MIN=\\\""+FABRIC_VERSION_MIN+"\\\"",
-  "FABRIC_VERSION_REV=\\\""+FABRIC_VERSION_REV+"\\\"",
-  "FABRIC_VERSION_BUILD=\\\""+FABRIC_VERSION_BUILD+"\\\"",
-] )
 
 # check for buildOS specific flags
 buildFlags = { 
