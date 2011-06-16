@@ -18,6 +18,8 @@ FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
 FABRIC_VERSION_REV='0'
 FABRIC_VERSION_SUFFIX='-alpha1'
+FABRIC_VERSION = FABRIC_VERSION_MAJ + '.' + FABRIC_VERSION_MIN + '.' + FABRIC_VERSION_REV + FABRIC_VERSION_SUFFIX
+Export( 'FABRIC_VERSION' )
 
 template = Builder( action = "sed s/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g <$SOURCE | sed s/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g | sed s/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g | sed s/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g >$TARGET")
 
@@ -151,12 +153,17 @@ buildDir = os.path.join( buildDirBase, 'Fabric' )
 distDir = '#dist'
 archDistDir = os.path.join( distDir, buildOS, buildArch, buildType )
 if buildOS == "Darwin":
-  npapiDistDir = os.path.join( archDistDir, 'Fabric NPAPI Plugin', 'Library', 'Internet Plug-Ins' )
-  fabricExtsDistDir = os.path.join( archDistDir, 'Fabric NPAPI Plugin', 'Library', 'Fabric', 'Exts' )
+  packageName = 'Fabric NPAPI Plugin'
+  Export( 'packageName' )
+  installerRootDistDir = env.Dir( os.path.join( archDistDir, packageName ) )
+  libraryDistDir = installerRootDistDir.Dir( 'Library' )
+  npapiDistDir = libraryDistDir.Dir( 'Internet Plug-Ins' )
+  fabricExtsDistDir = libraryDistDir.Dir('Fabric').Dir('Exts')
+  Export( 'installerRootDistDir' )
 else:
   npapiDistDir = os.path.join( archDistDir, 'NPAPI' )
   fabricExtsDistDir = os.path.join( archDistDir, 'Exts' )
-Export( 'npapiDistDir', 'fabricExtsDistDir' )
+Export( 'archDistDir', 'npapiDistDir', 'fabricExtsDistDir' )
 
 env.Append( CPPPATH=[buildDirBase] )
 Export( 'env' )
@@ -168,3 +175,4 @@ SConscript( dirs=['Tools'], variant_dir=os.path.join( buildDir, 'Tools' ) )
 SConscript( dirs=['Clients'], variant_dir=os.path.join( buildDir, 'Clients' ) )
 SConscript( dirs=['EDK'], variant_dir=os.path.join( buildDir, 'EDK' ) )
 SConscript( dirs=['Exts'], variant_dir=os.path.join( buildDir, 'Exts' ) )
+SConscript( dirs=['Installer'], variant_dir=os.path.join( buildDir, 'Installer' ) )
