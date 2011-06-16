@@ -8,3 +8,4 @@ public-*
 private-*
 third-party-builds-*
 third-party-source-packages-*
+*.pyc
