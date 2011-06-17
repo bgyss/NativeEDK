@@ -21,7 +21,17 @@ FABRIC_VERSION_SUFFIX='-alpha1'
 FABRIC_VERSION = FABRIC_VERSION_MAJ + '.' + FABRIC_VERSION_MIN + '.' + FABRIC_VERSION_REV + FABRIC_VERSION_SUFFIX
 Export( 'FABRIC_VERSION' )
 
-template = Builder( action = "sed s/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g <$SOURCE | sed s/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g | sed s/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g | sed s/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g >$TARGET")
+template = Builder( action = "\
+  sed \
+    -e s/{{FABRIC_OS}}/"+buildOS+"/g \
+    -e s/{{FABRIC_ARCH}}/"+buildArch+"/g \
+    -e s/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g \
+    -e s/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g \
+    -e s/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g \
+    -e s/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g \
+    -e s/{{FABRIC_VERSION}}/"+FABRIC_VERSION+"/g \
+  <$SOURCE >$TARGET \
+" )
 
 env = Environment(
   ENV={ 'PATH': os.environ['PATH']+os.pathsep+os.path.join(thirdPartyDir,'bin',buildOS) },
@@ -150,20 +160,23 @@ for subType in subTypes:
 buildDirBase = os.path.join( '#build', buildOS, buildArch, buildType )
 buildDir = os.path.join( buildDirBase, 'Fabric' )
 
-distDir = '#dist'
-archDistDir = os.path.join( distDir, buildOS, buildArch, buildType )
+distDir = env.Dir( '#dist' )
+archDistDir = distDir.Dir(buildOS).Dir(buildArch).Dir(buildType)
+Export( 'archDistDir' )
+packageName = 'Fabric NPAPI Plugin'
+Export( 'packageName' )
+installerName = packageName + ' ' + buildOS + ' ' + buildArch + ' ' + FABRIC_VERSION
+Export( 'installerName' )
 if buildOS == "Darwin":
-  packageName = 'Fabric NPAPI Plugin'
-  Export( 'packageName' )
   installerRootDistDir = env.Dir( os.path.join( archDistDir, packageName ) )
   libraryDistDir = installerRootDistDir.Dir( 'Library' )
   npapiDistDir = libraryDistDir.Dir( 'Internet Plug-Ins' )
   fabricExtsDistDir = libraryDistDir.Dir('Fabric').Dir('Exts')
   Export( 'installerRootDistDir' )
 else:
-  npapiDistDir = os.path.join( archDistDir, 'NPAPI' )
-  fabricExtsDistDir = os.path.join( archDistDir, 'Exts' )
-Export( 'archDistDir', 'npapiDistDir', 'fabricExtsDistDir' )
+  npapiDistDir = archDistDir.Dir( 'NPAPI' )
+  fabricExtsDistDir = archDistDir.Dir( 'Exts' )
+Export( 'npapiDistDir', 'fabricExtsDistDir' )
 
 env.Append( CPPPATH=[buildDirBase] )
 Export( 'env' )
