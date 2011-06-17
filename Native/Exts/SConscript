@@ -3,10 +3,38 @@
 #
 
 import os
+Import( 'baseEnv', 'buildOS' )
+
+extsEnv = baseEnv.Clone()
+Export( 'extsEnv' )
+
+# On windows, files have to be copied to the AppData directory (we can't create a symlink).
+# We do this copy here, since we don't have a proper installer.
+# The following code adds a post-build task which will be dependent on the
+# copy to Ext files in #dist.
+
+def CopyToAppdataIfWindowsAction(target=None, source=None, env=None):
+  if buildOS == 'Windows':
+    appDataDir = os.path.join( os.environ['APPDATA'], 'Fabric', 'Exts' )
+    if not os.path.exists(appDataDir):
+      os.makedirs( appDataDir )
+
+    for t in target:
+      shutil.copy( t.abspath, appDataDir )
+      print "Copying " + t.abspath + " to " + appDataDir
+
+# The goal of following method, along with the AddMethod line,
+# is to share the function accross all Ext folders.
+
+def CopyToAppdataIfWindowsMethod(nbargs, args):
+  for arg in args:
+    extsEnv.AddPostAction( arg, CopyToAppdataIfWindowsAction)
+
+extsEnv.AddMethod(CopyToAppdataIfWindowsMethod, "CopyToAppdataIfWindows")
 
 exts = []
 
-SConscript( dirs=['Samples'] )
+SConscript( dirs=['Sample'] )
 exts += ['sampleExts']
 
 SConscript( dirs=['Builtin'] )
