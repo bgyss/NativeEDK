@@ -188,4 +188,5 @@ SConscript( dirs=['Tools'], variant_dir=os.path.join( buildDir, 'Tools' ) )
 SConscript( dirs=['Clients'], variant_dir=os.path.join( buildDir, 'Clients' ) )
 SConscript( dirs=['EDK'], variant_dir=os.path.join( buildDir, 'EDK' ) )
 SConscript( dirs=['Exts'], variant_dir=os.path.join( buildDir, 'Exts' ) )
-SConscript( dirs=['Installer'], variant_dir=os.path.join( buildDir, 'Installer' ) )
+if 'installer' in COMMAND_LINE_TARGETS:
+  SConscript( dirs=['Installer'], variant_dir=os.path.join( buildDir, 'Installer' ) )
