@@ -168,7 +168,7 @@ Export( 'packageName' )
 installerName = packageName + ' ' + buildOS + ' ' + buildArch + ' ' + FABRIC_VERSION
 Export( 'installerName' )
 if buildOS == "Darwin":
-  installerRootDistDir = env.Dir( os.path.join( archDistDir, packageName ) )
+  installerRootDistDir = archDistDir.Dir( packageName )
   libraryDistDir = installerRootDistDir.Dir( 'Library' )
   npapiDistDir = libraryDistDir.Dir( 'Internet Plug-Ins' )
   fabricExtsDistDir = libraryDistDir.Dir('Fabric').Dir('Exts')
