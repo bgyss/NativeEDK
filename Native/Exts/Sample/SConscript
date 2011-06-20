@@ -1,0 +1,18 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+import os, shutil
+Import( 'baseEnv', 'buildOS' )
+
+aliases = [
+    'timeSampleExt'
+]
+
+dirs = [
+    'Time'
+]
+
+SConscript( dirs=dirs )
+
+Alias( 'sampleExts', aliases )
