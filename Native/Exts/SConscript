@@ -2,7 +2,7 @@
 # Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
 #
 
-import os
+import os, shutil
 Import( 'baseEnv', 'buildOS' )
 
 extsEnv = baseEnv.Clone()
