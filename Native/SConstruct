@@ -23,13 +23,13 @@ Export( 'FABRIC_VERSION' )
 
 template = Builder( action = "\
   sed \
-    -e s/{{FABRIC_OS}}/"+buildOS+"/g \
-    -e s/{{FABRIC_ARCH}}/"+buildArch+"/g \
-    -e s/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g \
-    -e s/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g \
-    -e s/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g \
-    -e s/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g \
-    -e s/{{FABRIC_VERSION}}/"+FABRIC_VERSION+"/g \
+    -e 's/{{FABRIC_OS}}/"+buildOS+"/g' \
+    -e 's/{{FABRIC_ARCH}}/"+buildArch+"/g' \
+    -e 's/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g' \
+    -e 's/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g' \
+    -e 's/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g' \
+    -e 's/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g' \
+    -e 's/{{FABRIC_VERSION}}/"+FABRIC_VERSION+"/g' \
   <$SOURCE >$TARGET \
 " )
 
