@@ -88,6 +88,7 @@ namespace Fabric
         String &operator =( char const *cString )
         {
           setData( cString, strlen(cString) );
+          return *this;
         }
       
         char const *data() const
