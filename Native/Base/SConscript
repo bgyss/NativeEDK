@@ -4,6 +4,7 @@
 
 Import( 'env' );
 baseEnv = env.Clone()
+baseEnv.Append(LIBS = ['pthread','dl'])
 Export( 'baseEnv' );
 
 SConscript( dirs=['RC','JSON'] )
