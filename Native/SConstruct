@@ -173,6 +173,11 @@ if buildOS == "Darwin":
   npapiDistDir = libraryDistDir.Dir( 'Internet Plug-Ins' )
   fabricExtsDistDir = libraryDistDir.Dir('Fabric').Dir('Exts')
   Export( 'installerRootDistDir' )
+elif buildOS == "Windows":
+  installerRootDistDir = archDistDir.Dir( packageName )
+  npapiDistDir = installerRootDistDir
+  fabricExtsDistDir = installerRootDistDir.Dir( 'Exts' )
+  Export( 'installerRootDistDir' )
 else:
   npapiDistDir = archDistDir.Dir( 'NPAPI' )
   fabricExtsDistDir = archDistDir.Dir( 'Exts' )
