@@ -230,7 +230,49 @@ namespace Fabric
         Scalar b;
         Scalar a;
       };
+      
+      struct Vec2
+      {
+        Scalar x;
+        Scalar y;
+      };
     
+      struct Vec3
+      {
+        Scalar x;
+        Scalar y;
+        Scalar z;
+      };
+    
+      struct Vec4
+      {
+        Scalar x;
+        Scalar y;
+        Scalar z;
+        Scalar t;
+      };
+      
+      struct Mat22
+      {
+        Vec2 row0;
+        Vec2 row1;
+      };
+    
+      struct Mat33
+      {
+        Vec3 row0;
+        Vec3 row1;
+        Vec3 row2;
+      };
+    
+      struct Mat44
+      {
+        Vec4 row0;
+        Vec4 row1;
+        Vec4 row2;
+        Vec4 row3;
+      };
+
       template< class Member > class VariableArray
       {
         struct bits_t
