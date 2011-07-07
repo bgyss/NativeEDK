@@ -78,6 +78,7 @@ namespace Fabric
             if ( m_bits )
               m_bits->refCount.increment();
           }
+          return *this;
         }
       
         String &operator =( String const &that )
