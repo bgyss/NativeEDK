@@ -184,8 +184,6 @@ else:
 Export( 'npapiDistDir', 'fabricExtsDistDir' )
 
 env.Append( CPPPATH=[buildDirBase] )
-if buildOS == "Darwin":
-  env.Append( CPPPATH=["/opt/local/include"] )
 Export( 'env' )
 
 SConscript( dirs=['ThirdParty'], variant_dir=os.path.join( buildDir, 'ThirdParty' ) )
