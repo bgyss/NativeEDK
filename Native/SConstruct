@@ -14,10 +14,17 @@ buildType = ARGUMENTS.get( 'TYPE', 'Debug' )
 Export( 'buildType' )
 thirdPartyDir = os.path.join(os.getcwd(), 'ThirdParty' )
 
+# [pzion 20110711] !!!!!!!!!!!!!!!!!!!!
+# When you change the version number,
+# don't forget to consider the expiry!!
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
 FABRIC_VERSION_REV='0'
 FABRIC_VERSION_SUFFIX='-alpha4'
+FABRIC_EXPIRY='1312985639'
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 FABRIC_VERSION = FABRIC_VERSION_MAJ + '.' + FABRIC_VERSION_MIN + '.' + FABRIC_VERSION_REV + FABRIC_VERSION_SUFFIX
 Export( 'FABRIC_VERSION' )
 
@@ -29,6 +36,7 @@ template = Builder( action = "\
     -e 's/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g' \
     -e 's/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g' \
     -e 's/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g' \
+    -e 's/{{FABRIC_EXPIRY}}/"+FABRIC_EXPIRY+"/g' \
     -e 's/{{FABRIC_VERSION}}/"+FABRIC_VERSION+"/g' \
   <$SOURCE >$TARGET \
 " )
