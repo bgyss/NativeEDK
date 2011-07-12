@@ -15,14 +15,10 @@
 # define FABRIC_OS_MACOSX
 # define FABRIC_POSIX
 
-# define FABRIC_MODULE_OCL
-
 #elif defined( _MSC_VER )
 
 # define FABRIC_OS_WINDOWS
 # define FABRIC_WIN32
-
-# define FABRIC_MODULE_OCL
 
 # define WIN32_LEAN_AND_MEAN   // Avoid unnecessary cruft
 # define NOMINMAX              // Don't define min/max as macros, stupid
