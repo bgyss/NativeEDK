@@ -2,9 +2,13 @@
 # Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
 #
 
-Import( 'env' );
+Import( 'env', 'buildOS' );
 baseEnv = env.Clone()
-baseEnv.Append(LIBS = ['pthread','dl'])
+
+
+if buildOS != 'Windows':
+  baseEnv.Append(LIBS = ['pthread','dl'])
+
 Export( 'baseEnv' );
 
 SConscript( dirs=['RC','JSON'] )
