@@ -1,4 +1,4 @@
 {
   "libs": "ExceptSample",
-  "code": "function throw( io String desc ) = 'exceptThrow';\n"
+  "code": "function throw( in String desc ) = 'exceptThrow';\n"
 }

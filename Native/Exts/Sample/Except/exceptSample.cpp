@@ -7,7 +7,7 @@
 using namespace Fabric::EDK;
 
 FABRIC_EXT_EXPORT void exceptThrow(
-  KL::String const &desc
+  KL::String::IN desc
   )
 {
   throw Exception( std::string( desc.data(), desc.length() ) );
