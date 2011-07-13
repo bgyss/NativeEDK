@@ -1,0 +1,18 @@
+#
+# Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
+#
+
+Import( 'extsEnv', 'fabricExtsDistDir' )
+
+exceptSampleExtEnv = extsEnv.Clone()
+exceptSampleExt = exceptSampleExtEnv.SharedLibrary( 'ExceptSample', Glob('*.cpp') ),
+exceptSampleManifest = exceptSampleExtEnv.File( 'ExceptSample.fpm.json' ),
+
+installAction = Install( fabricExtsDistDir, [exceptSampleExt,exceptSampleManifest] )
+extsEnv.CopyToAppdataIfWindows( installAction )
+
+Alias( 'exceptSampleExt', [
+  exceptSampleExt,
+  exceptSampleManifest,
+  installAction
+] )
