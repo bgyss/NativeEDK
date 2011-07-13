@@ -6,11 +6,13 @@ import os, shutil
 Import( 'baseEnv', 'buildOS' )
 
 aliases = [
-    'timeSampleExt'
+    'timeSampleExt',
+    'exceptSampleExt',
 ]
 
 dirs = [
-    'Time'
+    'Time',
+    'Except',
 ]
 
 SConscript( dirs=dirs )
