@@ -37,7 +37,7 @@ namespace Fabric
       typedef float Scalar;
       typedef void *Data;
     
-      class String
+      class StringBase
       {
         struct bits_t
         {
@@ -49,26 +49,7 @@ namespace Fabric
 
       public:
     
-        String()
-          : m_bits(0)
-        {
-        }
-      
-        String( char const *cString )
-          : m_bits(0)
-        {
-          size_t length = strlen( cString );
-          memcpy( expand( length ), cString, length );
-        }
-
-        String( String const &that )
-          : m_bits( that.m_bits )
-        {
-          if ( m_bits )
-            m_bits->refCount.increment();
-        }
-      
-        String &assign( String const &that )
+        StringBase &assign( StringBase const &that )
         {
           if ( m_bits != that.m_bits )
           {
@@ -81,12 +62,12 @@ namespace Fabric
           return *this;
         }
       
-        String &operator =( String const &that )
+        StringBase &operator =( StringBase const &that )
         {
           return assign( that );
         }
       
-        String &operator =( char const *cString )
+        StringBase &operator =( char const *cString )
         {
           setData( cString, strlen(cString) );
           return *this;
@@ -102,33 +83,33 @@ namespace Fabric
           return m_bits? m_bits->length: 0;
         }
       
-        String &append( char const *data, size_t length )
+        StringBase &append( char const *data, size_t length )
         {
           memcpy( expand( length ), data, length );
           return *this;
         }
       
-        String &append( char ch )
+        StringBase &append( char ch )
         {
           return append( &ch, 1 );
         }
       
-        String &operator +=( char ch )
+        StringBase &operator +=( char ch )
         {
           return append( ch );
         }
       
-        String &append( char const *cString )
+        StringBase &append( char const *cString )
         {
           return append( cString, strlen(cString) );
         }
       
-        String &operator +=( char const *cString )
+        StringBase &operator +=( char const *cString )
         {
           return append( cString );
         }
       
-        String &append( String const &that )
+        StringBase &append( StringBase const &that )
         {
           if ( m_bits )
           {
@@ -139,7 +120,7 @@ namespace Fabric
           else return assign( that );
         }
 
-        String &operator +=( String const &that )
+        StringBase &operator +=( StringBase const &that )
         {
           return append( that );
         }
@@ -204,9 +185,40 @@ namespace Fabric
           else return 0;
         }
       
-      private:
-    
         bits_t *m_bits;
+      };
+    
+      class String : public StringBase
+      {
+      public:
+    
+        String()
+        {
+          m_bits = 0;
+        }
+      
+        String( char const *cString )
+        {
+          m_bits = 0;
+          size_t length = strlen( cString );
+          memcpy( expand( length ), cString, length );
+        }
+
+        String( String const &that )
+        {
+          m_bits = that.m_bits;
+          if ( m_bits )
+            m_bits->refCount.increment();
+        }
+        
+        ~String()
+        {
+          if ( m_bits && m_bits->refCount.decrementAndGetValue() == 0 )
+            free( m_bits );
+        }
+        
+        typedef StringBase IN;
+        typedef StringBase &IO;
       };
     
       struct RGBA
