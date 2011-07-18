@@ -7,7 +7,7 @@
 default: build
 
 build:
-	PYTHONUNBUFFERED=1 scons -j4 -k kl
+	PYTHONUNBUFFERED=1 scons kl
 
 test: build
 	$(MAKE) -C Test
