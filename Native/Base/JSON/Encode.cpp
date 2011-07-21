@@ -18,9 +18,9 @@ namespace Fabric
     {
     public:
     
-      Generator()
+      Generator( bool pretty )
       {
-        m_yajlHandle = yajl_gen_alloc2( &Generator::PrintCallback, &s_yajlGeneratorConfig, &s_yajlAllocFuncs, this );
+        m_yajlHandle = yajl_gen_alloc2( &Generator::PrintCallback, pretty? &s_yajlGeneratorConfigPretty: &s_yajlGeneratorConfigUgly, &s_yajlAllocFuncs, this );
       }
       
       ~Generator()
@@ -64,15 +64,21 @@ namespace Fabric
       
     private:
       
-      static yajl_gen_config s_yajlGeneratorConfig;
+      static yajl_gen_config s_yajlGeneratorConfigUgly;
+      static yajl_gen_config s_yajlGeneratorConfigPretty;
       static yajl_alloc_funcs s_yajlAllocFuncs;
       
       yajl_gen m_yajlHandle;
       std::string m_result;
     };
     
-    yajl_gen_config Generator::s_yajlGeneratorConfig = {
+    yajl_gen_config Generator::s_yajlGeneratorConfigUgly = {
       0,
+      0
+    };
+    
+    yajl_gen_config Generator::s_yajlGeneratorConfigPretty = {
+      1,
       0
     };
     
@@ -83,9 +89,9 @@ namespace Fabric
       NULL
     };
 
-    std::string encode( RC::ConstHandle<Value> const &value )
+    std::string encode( RC::ConstHandle<Value> const &value, bool pretty )
     {
-      return Generator().generate( value );
+      return Generator( pretty ).generate( value );
     }
   };
 };
