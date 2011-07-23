@@ -77,7 +77,7 @@ if buildOS == 'Windows' and buildType == 'Debug':
 buildFlags = { 
   # === OSX ===
   'Darwin': {
-    'ccflags': [ '-fvisibility=hidden' ],
+    'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden' ],
     'cxxflags': [ '-fno-rtti' ],
     'linkflags' : [ '-w' ],
     'i386' : {
