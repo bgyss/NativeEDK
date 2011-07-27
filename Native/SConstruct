@@ -14,15 +14,17 @@ buildType = ARGUMENTS.get( 'TYPE', 'Debug' )
 Export( 'buildType' )
 thirdPartyDir = os.path.join(os.getcwd(), 'ThirdParty' )
 
-# [pzion 20110711] !!!!!!!!!!!!!!!!!!!!
+# [pzion 20110726] !!!!!!!!!!!!!!!!!!!!
 # When you change the version number,
-# don't forget to consider the expiry!!
+# don't forget to consider the expiry
+# and cache generation!!
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
 FABRIC_VERSION_REV='0'
-FABRIC_VERSION_SUFFIX='-alpha5'
-FABRIC_EXPIRY='1313330178'
+FABRIC_VERSION_SUFFIX='-alpha6'
+FABRIC_EXPIRY='1314288633'
+FABRIC_CACHE_GENERATION='2'
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 FABRIC_VERSION = FABRIC_VERSION_MAJ + '.' + FABRIC_VERSION_MIN + '.' + FABRIC_VERSION_REV + FABRIC_VERSION_SUFFIX
@@ -38,6 +40,7 @@ template = Builder( action = "\
     -e 's/{{FABRIC_VERSION_SUFFIX}}/"+FABRIC_VERSION_SUFFIX+"/g' \
     -e 's/{{FABRIC_EXPIRY}}/"+FABRIC_EXPIRY+"/g' \
     -e 's/{{FABRIC_VERSION}}/"+FABRIC_VERSION+"/g' \
+    -e 's/{{FABRIC_CACHE_GENERATION}}/"+FABRIC_CACHE_GENERATION+"/g' \
   <$SOURCE >$TARGET \
 " )
 
@@ -75,7 +78,7 @@ if buildOS == 'Windows' and buildType == 'Debug':
 buildFlags = { 
   # === OSX ===
   'Darwin': {
-    'ccflags': [ '-fvisibility=hidden' ],
+    'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden' ],
     'cxxflags': [ '-fno-rtti' ],
     'linkflags' : [ '-w' ],
     'i386' : {

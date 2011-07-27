@@ -15,7 +15,7 @@ namespace Fabric
   {
     class Value;
     
-    std::string encode( RC::ConstHandle<Value> const &value );
+    std::string encode( RC::ConstHandle<Value> const &value, bool pretty = false );
   };
 };
 
