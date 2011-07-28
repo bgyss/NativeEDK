@@ -1,0 +1,1297 @@
+commit f4c31b7f2aa589c189fcc88e3321935d3c33e7a1
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 26 12:35:55 2011 -0400
+
+    Change description of BackgroundTexture.html to mention the filtering
+
+commit 84514066756f4ba3d3a683f95178fa9412ed6f3a
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 26 12:11:46 2011 -0400
+
+    Bump version, expiry and cache generation
+
+commit f7703d81dab3d64be41de99ab1eafdd5005b12b0
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 26 12:09:43 2011 -0400
+
+    Darwin: Fix lots of errors resulting from combining -Werror -Wall with a release build
+
+commit 7ea348ceea74beb8bf533dfc24dcc36758180a75
+Merge: 56986dd 2d8224a
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 26 08:52:38 2011 -0700
+
+    Merge pull request #243 from fabric-engine/issue-242
+    
+    #242: release not building on linux
+
+commit 2d8224a29d76c98f6167c8347e2eb09db8a4e229
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 17:44:28 2011 +0200
+
+    #242: release not building on linux
+
+commit 56986dd4b100be8cef25ea225b3df5755c2532f9
+Merge: c23c961 1d8cb84
+Author: Philip Taylor <phil@fabric-engine.com>
+Date:   Tue Jul 26 08:23:38 2011 -0700
+
+    Merge pull request #240 from fabric-engine/issue-239
+    
+    Use single glGenBuffer calls for shadowmaps.kl
+
+commit 1d8cb84c62155ea0b3ce8588aaa4113ec1eeac88
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 17:21:39 2011 +0200
+
+    Use single glGenBuffer calls for shadowmaps.kl
+
+commit c23c9611959fb23b5114b9a00f5e0e81beb46ac5
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 11:21:27 2011 -0400
+
+    * Fixed 'BoneManipulator'
+
+commit 4cd2ee4eeddc647b114cdb9b1923438b73990606
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 11:07:02 2011 -0400
+
+    * Fixed regression in PointMaterial
+
+commit e2179909580296942913db8e882f409960c19690
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 11:02:16 2011 -0400
+
+    * Commented out Bone Manipulator
+    - TODO Fix for next release.
+
+commit 1939a0780987bb3e84b8b94cc0850d072edf71aa
+Merge: dc58f99 3408ec7
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 07:56:15 2011 -0700
+
+    Merge pull request #230 from fabric-engine/MultiPassRenderingDemo
+    
+    Multi pass rendering demo
+
+commit dc58f99f821565e24abdef2c22530abf93f76159
+Merge: 673c380 abe9505
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 07:52:46 2011 -0700
+
+    Merge pull request #238 from fabric-engine/issue-234
+    
+    Issue 234: Linux OGL Extension reverting changes
+
+commit 3408ec70d35fb917a227495ec831d4e38c5e93ff
+Merge: b553490 abe9505
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 10:50:08 2011 -0400
+
+    Merge remote branch 'origin/MultiPassRenderingDemo' into MultiPassRenderingDemo
+
+commit b5534900dfa8dc4c359d7543a7b6df4ad8b4271e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 10:49:56 2011 -0400
+
+    * Fixed issue where debugger starts far too zoomed out.
+
+commit abe9505d4a84ef2028412e207562d798d354bc69
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 16:44:49 2011 +0200
+
+    Linux: OGL function values not working right
+
+commit 0463262f1e6022fc80bf8b5790da9daac78d53e5
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 10:42:41 2011 -0400
+
+    * Fixed Painting demo.
+
+commit 982cf136cf7613d636fd2fa8532319996f1d55db
+Merge: ae2d279 fb6be1d
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 10:38:21 2011 -0400
+
+    Merge remote branch 'origin/MultiPassRenderingDemo' into MultiPassRenderingDemo
+
+commit ae2d2792970e6a34d9051f3487054782f2882b13
+Merge: a18e7dd 673c380
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 26 09:58:52 2011 -0400
+
+    Merge remote branch 'origin/master' into MultiPassRenderingDemo
+
+commit fb6be1ddf14d9662a5fd78e76ec59ad0d02c2363
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 15:58:09 2011 +0200
+
+    Use single glGenBuffer calls
+
+commit 673c38086d219deb07fd458c62b6fa8f28546ab9
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 26 09:55:57 2011 -0400
+
+    Remove file that was accidentally added
+
+commit 839948c9680403db592d38f76480b3fc61fd0bd8
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 15:50:10 2011 +0200
+
+    Case sensitivity issue on linux for offscreenRendering.kl
+
+commit 4aabc4fd45e0d124a17891dc6f3ab6b3539320dd
+Merge: 18e2dae 155561e
+Author: Jérôme Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Tue Jul 26 06:49:56 2011 -0700
+
+    Merge pull request #235 from fabric-engine/issue-234
+    
+    #234: OGL extension doesn't compile on linux
+
+commit 8943a0a2580f55844d1ecf38ce91272166122548
+Merge: a18e7dd 155561e
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 15:45:39 2011 +0200
+
+    Merge remote-tracking branch 'origin/issue-234' into MultiPassRenderingDemo
+
+commit 18e2dae41c5947609f5e336e6834df3d8175dde8
+Merge: 477b840 13d5d8b
+Author: Jérôme Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Tue Jul 26 06:45:07 2011 -0700
+
+    Merge pull request #232 from fabric-engine/issue-228
+    
+    Issue 228: Speed up JSON encoding tremendously, thereby increasing scene load speed with AST->IR path is cached
+
+commit 155561e320630f7e07d5ff47dfdaed69a4710a08
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 15:43:48 2011 +0200
+
+    #234: Linux OGL broken
+
+commit 93404cc3c2b3059449a6dc7781293822b1959e21
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 26 10:01:01 2011 +0200
+
+    #234: OGL extension doesn't compile on linux
+
+commit 13d5d8b7eaaaab1158d56159082aa285200ee437
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 25 17:54:54 2011 -0400
+
+    issue-228: Make building JSON strings safer
+
+commit a18e7ddd5ba644814407259d6cabb85d11b4c9b2
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Mon Jul 25 15:22:03 2011 -0400
+
+    * Fixed blur size on Fullscreen video
+
+commit 3d4c577f76b7713bf81bbd0e3c0ad6cd38eaa3a7
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 25 12:41:45 2011 -0400
+
+    issue-228: Use much faster Util::SimpleString in the JSON encoding of the AST to allow us to check the IR cache faster
+
+commit 9e8993704a3c60be17523636c953fa3de6e3bd05
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sun Jul 24 23:42:50 2011 -0400
+
+    * MultiPassRendering demo complete.
+    * Added scale option to Obj Parser
+    * OffScreenRendering now uses OpenGL stack.
+
+commit 477b84036686f6c3e15a2c24976f9356709e0d00
+Merge: f0e98fd efc653f
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sun Jul 24 21:10:35 2011 -0400
+
+    Merge branch 'cache-ast-to-ir'
+
+commit b796f3493317780f1f8813d7fb9827eb09e97531
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sun Jul 24 21:06:26 2011 -0400
+
+    WIP: Construct JSON version of AST globals using Util::SimpleString
+
+commit bf4582155cc7db7e6f37857d08006e398cf371cd
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sun Jul 24 20:20:49 2011 -0400
+
+    * MultiPassRedering crashing LLVM on load.
+
+commit 005ac44f14f21ddce60c9d5b6c7fa13071013e16
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sun Jul 24 19:52:23 2011 -0400
+
+    * MultiPassRendering compling and running without errors.
+
+commit 71fa437d54f49cc26d8090ae42252c3356501c3e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sun Jul 24 18:03:17 2011 -0400
+
+    * Added 'PostRedrawEventHandler', for drawing after the scene is finished. this is usefull for overlayes which shouldn't be effected by post  processing effects.
+    * Use 'glPushAttrib and glPopAttrib when rendering shadow maps.
+     - no longer use the 'prevProgramID to restore state.
+    * Cleaned up fbo generation in the offscreenRendering file.
+
+commit bff60746c7665d2580abf0322bbfc9d51970fabd
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sun Jul 24 13:36:02 2011 -0400
+
+    * Debugging offscreen rendering on Windows
+    * Fixed compiler warning on FilmiTonemapper
+
+commit cb3a6c91e7d451181c2b11f97ab0c77e194ea322
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sun Jul 24 12:02:23 2011 -0400
+
+    * Better error messages when an OpenCL device is not found.
+    * Removed redundant profiling timers.
+
+commit c34e40bb68e26ab9e548843e080ecf3c03ad3b7a
+Merge: 47b7d04 bed88e9
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sun Jul 24 11:56:00 2011 -0400
+
+    Merge remote branch 'origin/master' into LPV
+
+commit f0e98fd08858cd3f95ea9ae759b8184f2dd4c9ba
+Merge: bed88e9 b9bdca6
+Author: Philip Taylor <phil@fabric-engine.com>
+Date:   Sat Jul 23 19:58:13 2011 -0700
+
+    Merge pull request #225 from fabric-engine/ver-1.0.0-alpha5
+    
+    Darwin: link GLEW statically so it's not required on customer systems
+
+commit bed88e9944edf645c914cdaccd8ef4a4936ce888
+Merge: 96c1784 94a5a1f
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sat Jul 23 09:31:03 2011 -0400
+
+    Merge branch 'Issue218'
+
+commit 94a5a1fa70db6541eef04bed962042935a9c9592
+Merge: 38124c2 6891afb
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sat Jul 23 09:30:53 2011 -0400
+
+    Merge remote branch 'origin/master' into Issue218
+
+commit 96c1784baf420db5e073b79a2ed28314579ff26e
+Merge: a057c8c 6891afb
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sat Jul 23 09:30:36 2011 -0400
+
+    Merge branch 'master' of github.com:fabric-engine/Private
+
+commit a057c8cc9dc1e3f1ada313f3b500f2dadd24b4ff
+Merge: 34db7c6 38124c2
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sat Jul 23 09:30:12 2011 -0400
+
+    Merge branch 'Issue218'
+
+commit 38124c2744bcea6a174eb6bfa0eeb06d6c51a69d
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Sat Jul 23 09:29:38 2011 -0400
+
+    * Fixed regression in point sprite material
+
+commit efc653f4135ae247ba2cd10302b82a8e36624e7f
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sat Jul 23 01:32:56 2011 -0400
+
+    Darwin: Enable -Wall and -Werror in compile and fix all resulting warnings
+
+commit 9a594722f1ee51249a6797489b8ffa24cad7297d
+Merge: 89b5355 780de04
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sat Jul 23 01:28:26 2011 -0400
+
+    Merge branch 'Issue221' into cache-ast-to-ir
+    
+    Conflicts:
+    	Native/Core/DG/Code.cpp
+
+commit 6891afb49a03ec9da4df64d1ade56bc79eb8e000
+Merge: 34db7c6 8702812
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 22:09:14 2011 -0700
+
+    Merge pull request #226 from fabric-engine/dataload-test
+    
+    Fixed random 'Error calling method on NPObject'
+
+commit 870281220a034ebfcf13eccb8616dc104d85ebf7
+Author: Jerome Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Fri Jul 22 21:06:15 2011 -0400
+
+    Fixed random 'Error calling method on NPObject'
+
+commit 89b5355429ee2012d2ed6dd88ae1ccb9719d82e2
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 18:38:21 2011 -0400
+
+    Display copyright, version, etc. only once
+
+commit 6ce72974e70c758fc3b486a4fe0e852f1ee46af9
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 18:38:05 2011 -0400
+
+    Fix long-standing "error in NPObject" bug
+
+commit 4320d7aba9d34882fd95c59d3b01d2062be590d0
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 18:16:34 2011 -0400
+
+    AST: Cache toJSON results
+
+commit acd498c3d8eed10eb6fda8772dc147173c507ae0
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 17:34:53 2011 -0400
+
+    AST: Make all AST nodes immutable
+
+commit 6998275419181713b09770e0596b6ab24dd41480
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 10:13:52 2011 -0400
+
+    Cache AST->IR
+
+commit 34db7c6e550f896a0cf97cf4cd6a5011b9a420ac
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 14:41:55 2011 -0400
+
+    * Removed shadow offset now that we don't have double sided planes.
+
+commit 38f0c3d496619556b4e6440ea6aa948725e24290
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 14:35:31 2011 -0400
+
+    * LoadUniforms has ready made report statements to aid debugging.
+
+commit b78c7dc258f1262d1621349e05800354cdfc1dee
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 14:06:37 2011 -0400
+
+    * If users load Fabric demos from the file system, now they get an alert box.
+
+commit 6913e34c23928af69bbdea9a5484f2ed60fbf302
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 13:08:57 2011 -0400
+
+    * Removed some redundant files.
+
+commit 48944c3c1d2d0dedd6880cb6f6e23e3843269f55
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 13:00:50 2011 -0400
+
+    * PostProcessing demo working
+    * Dropshadows re-enabled in the debugger.
+    * For post-process effects, the shader is now load.
+    * OffscreenRender buffers are now cleared before traversial into the sub-graph.
+
+commit b0e671aab6bcf9fba0b41100ad833316030f54fc
+Merge: 2c5e47d 5732b83
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 12:02:53 2011 -0400
+
+    Merge branch 'master' into Issue218
+    
+    Conflicts:
+    	Web/SceneGraph/Resources/FABRIC.SceneGraph.Materials.js
+
+commit 5732b832f93ce04408f95f4c3ef33268a625f91e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 11:58:17 2011 -0400
+
+    * Removed UseProgram operator. useProgram is always called immediately now.
+
+commit 780de0423d7c2a5caf2e2a0f5182be26baf8bd85
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 11:40:19 2011 -0400
+
+    Exts::OGL: Add fglSetDebuggingEnabled() call to allow KL code to enable OGL debugging
+
+commit e10e8d0969de365eb051fab07c3eeaa4bb604dfa
+Merge: 912a68b ee32663
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 11:35:22 2011 -0400
+
+    Merge branch 'master' into Issue221
+
+commit ee3266321afcb5ee495b56b8ca937f84245c9b60
+Merge: ce80300 b43f4ba
+Author: Jérôme Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Fri Jul 22 08:31:14 2011 -0700
+
+    Merge pull request #212 from fabric-engine/LPV
+    
+    Lpv and a collection of small bug fixes.
+
+commit 0191734ae4dcab7e7345a8db1050022f88522b21
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 11:26:29 2011 -0400
+
+    Exts::OGL: debugging fixes
+
+commit e5465d582d47578f8947179addbea514c385eb7d
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 10:57:39 2011 -0400
+
+    Exts::OGL: Fix message associated with OpenGL errors
+
+commit 71d2d6b0612e4645d0fc3a83bcf15a87386ae859
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 10:32:47 2011 -0400
+
+    Throw EDK::Exceptions from OGL extension
+
+commit b0fb20c69dbaf9e6220796416fc3fa810e87363a
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 22 10:32:23 2011 -0400
+
+    Turn on exception handling in LLVM JIT before compiling cached IR
+
+commit 912a68bb757e0e81f64fb54a33ba297bbb776ebc
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 10:22:48 2011 -0400
+
+    * switched postprocess effectshader
+
+commit 2c5e47dfa6a9cfa418c56cdea4993474ceaa2ee5
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 10:16:27 2011 -0400
+
+    * Set up trivial post proccessing effect.
+
+commit 47b7d042f512babebcfd1ed664ee70f4b84e4e34
+Merge: 8451f9a b43f4ba
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 09:08:28 2011 -0400
+
+    Merge remote branch 'origin/LPV' into LPV
+
+commit 8451f9afae9e22790231743fcfb5fc4718676274
+Merge: e51aa4d ce80300
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 09:07:43 2011 -0400
+
+    Merge remote branch 'origin/master' into LPV
+    
+    Conflicts:
+    	Web/SceneGraph/Resources/FABRIC.SceneGraph.Lights.js
+    	Web/SceneGraph/Resources/FABRIC.SceneGraph.Materials.js
+    	Web/SceneGraph/Resources/KL/generatePlane.kl
+
+commit e51aa4da67f68053fbac01d5153a742fed50077e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 09:04:53 2011 -0400
+
+    * started LPV scenegraphnode
+
+commit 4604f0624affce220963ca238aa3165546436d8e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 08:15:18 2011 -0400
+
+    * Moved ShadowCastingLights into 'Rendering' folder.
+    * Setup 'PostProcessing' rendering demo.
+
+commit 61d1978f83467b2755f8a4e7eed90c5ce0515953
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 22 07:24:06 2011 -0400
+
+    * Initial commit of MultiPassRendering demo
+
+commit 224728f61d2e49092acb55367d686e89b28bf1ad
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 23:29:59 2011 -0400
+
+    * Removed use of EXT OpenGL constants
+
+commit 0f1e134fd6dc26b73b2d5cf93f952d518eb4f74c
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 22:44:54 2011 -0400
+
+    * PostProcess effects have a customizable image format.
+
+commit b11f652f529c6a3b337963ff0314ddfeaf61338d
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 22:33:49 2011 -0400
+
+    * Removed references the extension ('EXT') OpenGL methods when setting up FBOs.
+    * offScreenRendering is now templated so the same code can genrate any type of FBO.
+
+commit c50ad35d60dbff57e57c065a2e1ff354a844ef01
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 22:16:37 2011 -0400
+
+    * renamed 'OffscreenRendering.kl' to 'offscreenRendering.kl' to be consistent with our other files.
+
+commit 9a790750d7f838ae2fc695c9e30db937b9100b12
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 22:09:21 2011 -0400
+
+    * Removed redundant file.
+    * renamed 'lights.kl' to 'loadLights.kl'
+
+commit 1d142aa71c43fdc26cae4587577a2f7d9d3c9743
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 21:10:33 2011 -0400
+
+    * Provided color coding of pre-descend and post descend operators.
+    * Removed redundant function call
+
+commit 005aaacf143ce033e9601f698a9db8e5d6ca6b11
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 21:02:04 2011 -0400
+
+    * By constructing the redraw event handlers with the name 'Redraw', the 'getRedrawEventHandler' interface function is automatically generated.
+     - Note: when 'constructEventHandlerNode('Redraw')' is called, it assigns/replaces the method 'getRedrawEventHandler'.
+    * Operators can be constructed with empty bindings arrays.
+
+commit b43f4bafb46c43fbdf0ee583477fa8c217149eb3
+Merge: 938406c ce80300
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 18:09:23 2011 -0400
+
+    Merge remote branch 'origin/master' into LPV
+    
+    Conflicts:
+    	Web/SceneGraph/Resources/FABRIC.SceneGraph.Lights.js
+    	Web/SceneGraph/Resources/FABRIC.SceneGraph.Materials.js
+
+commit a7338129e503bb44151e265e0e193dd320c98cbd
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 18:07:00 2011 -0400
+
+    WIP: use AST->IR cache earlier
+
+commit 938406c67f5ab120d7a6f81c9aae2fb11f6d1d8a
+Merge: ace53e7 42d3284
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 18:06:32 2011 -0400
+
+    Merge remote branch 'origin/master' into LPV
+    
+    Conflicts:
+    	Web/SceneGraph/Resources/KL/generatePlane.kl
+
+commit 2c6d84e4f4cbd9b96200bdc321a3d7b66dde3161
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 17:39:16 2011 -0400
+
+    Cache AST->IR rather than source code->IR
+
+commit ce80300a337f1e3474c8fa01d0feb1daf45efcd6
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 17:21:54 2011 -0400
+
+    * Node coloring based on errors, and error display.
+
+commit d82c77b228a5b714d184162e172a7dcf015de490
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 17:08:06 2011 -0400
+
+    Append RT ASTs to parsed results
+
+commit e9df3e63bf6f66a7fa9931bc5015b8081cbeb8be
+Merge: 5ca9310 42d3284
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 16:46:02 2011 -0400
+
+    Merge remote branch 'origin/master' into Issue207
+
+commit 5ca93109536024415dca4abe6b97d743e021b1f2
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 16:44:39 2011 -0400
+
+    * Fixed bugs in vbo generation for video.
+    * Images now use 'Size' buffer ids.
+
+commit a2c1c16c79cfe52f0f170f5f7a3d829f8cb81f69
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 16:23:35 2011 -0400
+
+    * Event Nodes are now constructed by the 'SceneGraphNode'
+     - Provides name spacing and consistency.
+
+commit 42d3284945312408cb101d9ea4faac5d5f018e3a
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 16:16:58 2011 -0400
+
+    Fix failure to include prototypes first
+
+commit 28456c90761a1a9b39c3e13707ae101ddca34d0d
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 16:14:15 2011 -0400
+
+    * More trivial bug fixes.
+
+commit a7009cf4e605919cc9fe15ab3f03e75de758a792
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 16:10:47 2011 -0400
+
+    * Minor bug fixes
+
+commit b0e33f8af5e393acfaf6d126fdb9ed175da2107a
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 16:09:03 2011 -0400
+
+    * Event Handlers are now constructed by the 'SceneGraphNode'.
+
+commit 9e6fafa344c9603b8a073d8f03e06ae60824b284
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 15:47:33 2011 -0400
+
+    * DGNodes are now constructed by 'ScaneGraphNode'
+     - rather than passing in a list of dgnode names, we now construct on demand.
+
+commit 5851ca1c05869529c97b2ab83c43931438042951
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 15:43:17 2011 -0400
+
+    Fix nBody simulation
+
+commit 9b97a7284a10b4e3e3f5b7df3fa4ee0e3f33c88b
+Merge: 337ea16 ec6073e
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 15:38:07 2011 -0400
+
+    Merge remote-tracking branch 'origin/master' into recursive-descent-parser
+
+commit 337ea169f3870ce1467cf87870bca2517ab56813
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 15:37:33 2011 -0400
+
+    Ensure that we include dependencies when doing code generation
+
+commit e61547e0b62c18db9371d09616c92db46f020360
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 15:07:17 2011 -0400
+
+    * Removed redundant scene.addFileReadWriteFunctions function
+
+commit e0120baa12f643080d5a0a5b3088135dc4fa0dbc
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 15:03:16 2011 -0400
+
+    * Removed all occurences of 'addMemberAndOperatorStackFunctions'.
+     - Scnince we added private/public interfaces, this should no longer be used.
+
+commit b34b96847a78f258af2510c692cefac0dba3e9ce
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 14:40:44 2011 -0400
+
+    * Added ScreenSpaceManipulator to Manitpulators demo.
+    * Modified Camera Poitions in MouseEventsDemo(it was facing the un-lit side of the scene).
+    * manipultors drown 'on top' were not working. operator on the wrong stack(copy paste error).
+    * Removed 'StupidPostEffect'.
+    * Removed redundant OpenGL-> Fabric type mapping in KL.
+
+commit c5be8b130fc7fb384a4c002ef6df1c825f9b00e9
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 14:27:13 2011 -0400
+
+    Use ASTs rather than source concatenation for KL bindings of registered types
+
+commit 738b85adf519db057044dbe905890bd1c8c169d9
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 13:35:41 2011 -0400
+
+    Fix some demos broken due to KL changes
+
+commit fa549eb2122367fa516ab628d40c1b09a4bb1f51
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 13:27:24 2011 -0400
+
+    Fix handling of escapes in KL code
+
+commit ace53e77087f5bf523f13dfb199b38f1b61189b8
+Merge: 9623cb6 ec6073e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 12:55:29 2011 -0400
+
+    Merge remote branch 'origin/master' into LPV
+    
+    Conflicts:
+    	Web/SceneGraph/Resources/Shaders/ShadowReceivingPhongShader.xml
+
+commit f806bf06f981db929cf0a8b83f841e425cca3887
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 12:44:41 2011 -0400
+
+    Ensure that plugins only load once at startup
+
+commit ec6073e6a42a6151b7a92762bb8532782c2f23ba
+Merge: 0dda320 be27fc7
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Thu Jul 21 06:54:56 2011 -0700
+
+    Merge pull request #209 from fabric-engine/Issue208
+    
+    * fix to 'select' call in wrapper layer.
+
+commit 9623cb6b636b6e51ff92965acf844aa88b17c3a8
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 09:20:57 2011 -0400
+
+    * Shortened Manipulator node names, and ensured they were consistent.
+    * Fixed bug in eeror message generation in CheckVBORequirements.
+    * If a shader has no material uniforms, then it doesn't construct a dgnode.
+    * Shadow material is customizable on the scene constructor.
+
+commit be27fc7b39c774c30a924ca1977d5a2e1cc856df
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Thu Jul 21 00:11:20 2011 -0400
+
+    * fix to 'select' call in wrapper layer.
+
+commit f04b0b606ecd4e55a4a678293731440974357ad6
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 23:46:55 2011 -0400
+
+    All unit tests passing again
+
+commit c80679b10580a1746375135646e43fb8e9978e0f
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 23:42:29 2011 -0400
+
+    Fabric: all tests passing except opencl-hello.js
+
+commit d245b7da3d2190f57f1db2881d1320cb61777934
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 23:12:55 2011 -0400
+
+    KL: all unit tests passing
+
+commit 57d349ffdec885428803a9f762506c060bc699d7
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 23:03:23 2011 -0400
+
+    KL: tests a-z now pass
+
+commit 688a151bd654741f9dbc1b09284de4f5c5943052
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 22:48:31 2011 -0400
+
+    KL: Remove C-style casts
+
+commit acf135b7879b565bd42744cd3a4db2891af1e9e9
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 21:05:17 2011 -0400
+
+    KL: tests f-z passing
+
+commit 94e5a65db0605ec42e7cd2ac5ff55e9bfdc73128
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 21:01:04 2011 -0400
+
+    KL: tests k-z pass
+
+commit 889129570b346fb6f96a4309499331e7ea4dc8a7
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 20:57:18 2011 -0400
+
+    KL: tests n-z pass
+
+commit 765846ce676300d4dd52e06b59565ae55a57f044
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 20:55:09 2011 -0400
+
+    KL: tests from q-z pass
+
+commit 9edb6286625c8adbe41cf947b38ffa0d6bbe2751
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 20:33:17 2011 -0400
+
+    AST cleanup
+
+commit e38324c20167be031208be554577fc11feabc62a
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 19:44:22 2011 -0400
+
+    Fix temp-value.kl
+
+commit f3310e4db1b04793ad954d055e5c3a38e7de9d7d
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 18:54:50 2011 -0400
+
+    Fix registration of types
+
+commit 82ec4b3ff5a79058ca8b748b1eb85dd37f0b8623
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 17:35:22 2011 -0400
+
+    Fix var-array-resize.kl
+
+commit 021657c59171ee70b4b7f27f9a90c44eed3ec306
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 17:16:01 2011 -0400
+
+    Remove m_typeName from KL::Context
+
+commit 6bcd02455fcb6b259586d1eb270e6760fb818275
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 17:06:30 2011 -0400
+
+    Restore original test results
+
+commit aa829c3b8ff64da56b26cc4204de95a7419bb2b7
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 17:03:13 2011 -0400
+
+    Fix while-loop.kl
+
+commit 31868f3acbb436f7d39e3e2a68ed893952722096
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 16:39:27 2011 -0400
+
+    Add unit test for alias errors
+
+commit 55d89ae4885ff2ede4411ad0abcbf21f3e89b96b
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 16:39:16 2011 -0400
+
+    Add unit test for alias errors
+
+commit cf72f53742e4937720a8f4dbd98fddfd2f8e96c0
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 16:12:23 2011 -0400
+
+    Fixes for structure registration
+
+commit ee47cd5a5bf0e2dfb8dfa32c76cf5fcd06278356
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 15:57:26 2011 -0400
+
+    * Set up normal texture in LPV Spotlight
+    * Removed porders from depth buffers.
+
+commit 958bd85c042b7624c051f90d98e2343c3d331a41
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 15:29:47 2011 -0400
+
+    * Light cone dist derrived from target
+
+commit 59eecd3868b551863ed2bc0e4759624150ec2773
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 15:12:31 2011 -0400
+
+    * Fixed Shadow Map debugging
+    * Fixed stupid regression in Materials
+    * Remvoed a few redundant comments
+
+commit c61f71e72ca1bfe5f6ecca15fd1befea27afe8c5
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Wed Jul 20 14:21:19 2011 -0400
+
+    RDP: Shift back to using Bison
+
+commit 0de4bf0d49a980abff5c6e8d40f285c7ffa1bbb1
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 13:54:37 2011 -0400
+
+    * Light shadow map generation can now be customized by derrived classes.
+    * Fixed bug where shadow map texture stub was being created.
+
+commit 0dda3209d1bdb419242c2a500373619022fecf3e
+Merge: 83f432a be126d1
+Author: Jérôme Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Wed Jul 20 08:56:32 2011 -0700
+
+    Merge pull request #203 from fabric-engine/Issue202
+    
+    Issue202: Fixing ray line intersections.
+
+commit 65b1bb5cadbef4e44afcb265805519d6ada67387
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 11:40:03 2011 -0400
+
+    * General cleanup of demo code
+
+commit f3417712a89945fca0fa42c459fabd6040a934eb
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 11:35:49 2011 -0400
+
+    * Initial commit of LPV demo
+    * Planes can now be single-sided.
+
+commit be126d1db9c0e0b4115a13baf95a5fcbeb209982
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 10:44:24 2011 -0400
+
+    * raised ray intersection threshold for Manipulators demo.
+    * Checked case where both line segments have length == 0.0
+
+commit 83f432a6f773d7ae534aa0220a7f9a3dbc6ee6ac
+Merge: 37c98b4 c7eca60
+Author: Philip Taylor <phil@fabric-engine.com>
+Date:   Wed Jul 20 07:34:31 2011 -0700
+
+    Merge pull request #161 from fabric-engine/issue-97
+    
+    Issue 97: Re-implement right-click context menu
+
+commit 8075cb5e6730d3e28d5acdaf882c016e56933e74
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Wed Jul 20 10:28:41 2011 -0400
+
+    * if line length == 0, then return dist to point
+
+commit 37c98b486469e3b17dddc35942e9b509f46bd1bb
+Merge: 202580e be5a852
+Author: Jérôme Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Wed Jul 20 06:04:31 2011 -0700
+
+    Merge pull request #201 from fabric-engine/Issue184
+    
+    Issue184 Shadows on OsX
+
+commit 11d80ad05c3995b3a7dbb55ef711d188d4e0c901
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 19 18:35:52 2011 -0400
+
+    RDP: Remove reduce/reduce conflicts from KL grammar
+
+commit 67cd176cb8f190f16d35e6f3078de5a335516974
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 17:05:20 2011 -0400
+
+    Fix ray lines intersection
+
+commit be5a8521021c48aa8a795403309c35041bf437c9
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 15:21:11 2011 -0400
+
+    * Fixed mouseout events on geometry
+
+commit 0cd454117f4c49296dd9a1aec972344078e3751e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 15:20:39 2011 -0400
+
+    * Fixed shadow casting under ATI using shadow2DProj
+
+commit 57be5760faf41565b1ce2b342492f98e4df974a6
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 19 15:19:47 2011 -0400
+
+    RDP: Basic functions working
+
+commit 50ab8fff070a48aae221690721217912f0d4c87b
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 14:58:35 2011 -0400
+
+    Fixed on Windows due to usefull error messages
+
+commit fcbefe916be5e2ea9f9dca9d59dffd0972654155
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 14:55:51 2011 -0400
+
+    * Reverting back to pre 1.30 GLSL provide so it works on OsX.
+
+commit 720dd36d76cac2f7811b56d040aed58b5987c142
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 14:13:39 2011 -0400
+
+    upgrading to GLSL 130
+
+commit a8d1ef860c394cb9f56460c61eeee892d9179d30
+Merge: 4a015e3 202580e
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 19 14:09:39 2011 -0400
+
+    Merge remote-tracking branch 'origin/master' into recursive-descent-parser
+
+commit 202580e2b7c967397cc308c841c086bed95df8de
+Merge: 8ba8df8 afc7d95
+Author: Jérôme Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Tue Jul 19 09:43:44 2011 -0700
+
+    Merge pull request #199 from fabric-engine/issue-196
+    
+    Issue 196: remove last references to gl sharing
+
+commit afc7d95c9512b0ea41872379dfe0615c336e5c80
+Author: Jerome Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Tue Jul 19 12:24:36 2011 -0400
+
+    Trivial fixes
+
+commit db4da66e7c600f7fbc5293963842cdbf5970adf0
+Author: Jerome Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Tue Jul 19 12:17:31 2011 -0400
+
+    NBodies: remove some remaining GL sharing calls + add devices to clCreateContext_GL
+
+commit 8ba8df8e55ee3149b6da51912d6dfd259a4b0678
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 19 11:36:23 2011 -0400
+
+    nBody: move back into public samples
+
+commit 41c3748da21f9af4620e2c21d72786911ad07152
+Merge: b10183b 5ea1588
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 19 11:34:19 2011 -0400
+
+    Merge remote-tracking branch 'origin/issue-196'
+
+commit 5ea1588b064f3fc80600cb1be2c6f991063b040e
+Merge: 82953b1 515d2a7
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 11:15:43 2011 -0400
+
+    Merge branch 'issue-196' of github.com:fabric-engine/Private into issue-196
+    
+    Conflicts:
+    	Web/Apps/Private/nBodies/KL/nBodyOpGPU.kl
+
+commit 82953b1afd5857bd0c7dc484114c25bc5b37243d
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 10:52:51 2011 -0400
+
+    * Reverting to OpenCL buffer copying back to main memory.
+
+commit 515d2a7aa7fe54a636e8f6d2325f9a79e1b25279
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 19 10:39:05 2011 -0400
+
+    nBody: don't call clFinish at end of filling command queue
+
+commit dc61f2a287b4df0a5c36ee6ecfa939d324526f8e
+Merge: 8b6add8 2e4315e
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 10:21:41 2011 -0400
+
+    Merge branch 'pt' into issue-196
+
+commit 8b6add8224e14736aa4d7468dd91a9357d1fb4d4
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 19 10:13:13 2011 -0400
+
+    nBody: make number of bodies easy to change
+
+commit b10183bba8b6f5d2f77e6e87654e3cc6be8465f7
+Merge: 0fc390d e8a6239
+Author: Helge Mathee <helge.mathee@fabric-engine.com>
+Date:   Tue Jul 19 06:54:55 2011 -0700
+
+    Merge pull request #198 from fabric-engine/issue-195
+    
+    Issue 195: Make OpenCL Thunk Work on Linux
+
+commit 2e4315ea7506331239e5d7c968302baa36a614e9
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 09:07:54 2011 -0400
+
+    * Removed spacing on top row widgets to tighten up the UI a bit.
+
+commit 9a7376c7b0296fb8be2592fe4ae855f0005d1792
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 09:05:18 2011 -0400
+
+    * Improved widget spacing.
+
+commit 2414825204022951db1a9ecb2e53cf3682f21572
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 09:01:00 2011 -0400
+
+    * Lightened background color.
+
+commit 1a69ebeb63c47a2148fa839a4debbeed773a2b7f
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Tue Jul 19 09:00:24 2011 -0400
+
+    * Adding Aquisition of the extra OpenGL buffers
+
+commit 202e74af05c0d32489678ff6405d99820383bd67
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 17:59:19 2011 -0400
+
+    nBody: make 'expand' the default option; only some of the OpenCL kernel args once
+
+commit 9291531cf83bd48c0d162f8bac7b355bf2560947
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 17:36:04 2011 -0400
+
+    nBody: use exactly 8192 bodies for comparison with nVidia
+
+commit 4a015e36e53735c232afb16fff753c255aff9e51
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 17:25:26 2011 -0400
+
+    RDP: WIP: support simple functions
+
+commit 81a3e1a711403853ea19f447919d0928cb70b8e7
+Merge: 1c7be1d 8259029
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 15:14:08 2011 -0400
+
+    Merge remote-tracking branch 'origin/Issue197' into issue-196
+
+commit e8a6239283dbe88b046ff870dc706084a708c7e2
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 15:08:58 2011 -0400
+
+    Fixes for OpenCLThunk
+
+commit 164f1cfe038cccdd4fb7bc72a3f18dc5ba35ecbb
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 15:01:32 2011 -0400
+
+    Revert "Linux: Disable OCL entirely for now"
+    
+    This reverts commit 1ea7625c5b1ef34236461ba32ce82314ea7219bc.
+
+commit aa68eb97e7a63dd5b0bdc52ff80493e9930da010
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 14:59:54 2011 -0400
+
+    OpenCLThunk: Ensure that we close the OpenCL library at exit
+
+commit 825902903ec93700e5b98382272ed0b78f16a975
+Merge: d4e239f 0fc390d
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Mon Jul 18 14:45:53 2011 -0400
+
+    Merge remote branch 'origin/master' into pt
+    
+    Conflicts:
+    	Web/Apps/Private/nBodies/KL/nBodyOpGPU.kl
+
+commit 7897fa956ff917151d39bfa9546f9950ee2dc2ec
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 14:41:24 2011 -0400
+
+    Linux: Use OpenCL thunk for Linux as well
+
+commit b86390d7d46e8659e84c24181c901bb6e3ce45c5
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 14:12:29 2011 -0400
+
+    Rename OpenCL_thunk.cpp to OpenCLThunk.cpp for consistency
+
+commit 1c7be1ddc191f5de56622a6dd0e80be58c92bbe8
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 14:08:33 2011 -0400
+
+    Add nBodies to Xcode project
+
+commit 0fc390d3c117ec3fb527ea3ad5c4b972fd9800cc
+Merge: 1ea7625 a379ec5
+Author: Jérôme Couture-Gagnon <jerome.couture-gagnon@fabric-engine.com>
+Date:   Mon Jul 18 10:49:38 2011 -0700
+
+    Merge pull request #194 from fabric-engine/Issue193
+    
+    * Fixing Shadows on ATI cards
+
+commit a379ec578ceceb94b74504fadc3d1ba23c1478cc
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Mon Jul 18 12:55:10 2011 -0400
+
+    * Switched to using textureProj
+
+commit da0a6aebfccc86e631ccb1f501d2055c3837ac66
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Mon Jul 18 09:08:38 2011 -0400
+
+    RDP: WIP: Support basic functions
+
+commit 3d5f25f295be68cc885720e449c883827d67546c
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sun Jul 17 21:56:48 2011 -0400
+
+    RDP: Rename StructDeclMember to MemberDecl
+
+commit b8ac749bacd6cfa3480da17a024c192cee59f064
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sun Jul 17 21:45:06 2011 -0400
+
+    RDP: Prettify JSON output of AST in KL tol
+
+commit dc296bc4f32fdd84f85a9ade3774a18ad8a15409
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sun Jul 17 21:38:50 2011 -0400
+
+    RDP: Add support for toJSON() method for all AST nodes
+    Get rid of AST list nodes, use RC::Vector instead
+
+commit 741fe4b9e1db7afd87166e8c9b0a742ff3314c33
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sat Jul 16 12:22:48 2011 -0400
+
+    RDP: Add support for array modifiers
+
+commit e86d8a6be5df2bb222058f659aa0456ecfda05d3
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sat Jul 16 10:21:23 2011 -0400
+
+    RDP: more efficient use of expect
+
+commit 92116974495ec518b9412671022e4828495f64d7
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sat Jul 16 10:18:19 2011 -0400
+
+    RDP: Handle early end-of-input
+
+commit 819565b863972fa576cfe6d1b9c17034c8fbbaaa
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Sat Jul 16 01:42:04 2011 -0400
+
+    RDP: Add support for struct statements
+
+commit 585dfb693120a1d0ec7cd2c49e63f861359c80c4
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 15 22:27:38 2011 -0400
+
+    RDP: Add support for alias statement
+
+commit d4e0a21bcf9c45a242a9904fa04a0bfffec6109d
+Merge: 99c305d ae9df7f
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 15 19:54:30 2011 -0400
+
+    Merge branch 'kl-unit-tests-verify-ast' into recursive-descent-parser
+
+commit ae9df7f4eb73b38c20a1ffff94e284370d0db4bd
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 15 19:53:21 2011 -0400
+
+    Check AST representation when verifying unit tests
+
+commit 9afdbd09f6701921483d95fa22bc4cbe4a906225
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 15 19:52:58 2011 -0400
+
+    Fix deepDesc for various AST nodes
+
+commit 99c305d165526a658917052110a9e1e397ebf6b2
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Fri Jul 15 19:24:40 2011 -0400
+
+    Redesign scanner for recurive descent parser
+
+commit d4e239f197052ac6b63b9255dadd067eb6b8badb
+Author: Phil Taylor <phil.taylor@fabric-engine.com>
+Date:   Fri Jul 15 09:50:16 2011 -0400
+
+    * Generalized VBO creation in the DG.
+    * nBodies uses OpenGL buffers for everything now.
+
+commit c7eca60b3e52dbca2def0d63b482a5f1b76c8fe5
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 12 18:22:16 2011 -0400
+
+    issue-97: make context menu work on Linux but disable it because it still eats mouse events from Javascript
+
+commit 6ba8eff8eb3c6963ca1580a21d1ac11b5f2a46e5
+Author: Peter Zion <peter.zion@gmail.com>
+Date:   Tue Jul 12 17:31:54 2011 -0400
+
+    issue-97: fix viewport context menu and use it to add "Fabric debugger..." item
