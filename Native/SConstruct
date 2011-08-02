@@ -22,8 +22,8 @@ thirdPartyDir = os.path.join(os.getcwd(), 'ThirdParty' )
 FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
 FABRIC_VERSION_REV='0'
-FABRIC_VERSION_SUFFIX='-alpha6'
-FABRIC_EXPIRY='1314288633'
+FABRIC_VERSION_SUFFIX='-alpha7'
+FABRIC_EXPIRY='1314885954'
 FABRIC_CACHE_GENERATION='2'
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
