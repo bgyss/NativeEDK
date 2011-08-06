@@ -185,9 +185,9 @@ env.Append( BUILDDIR = [Dir(buildDir).abspath] )
 distDir = env.Dir( '#dist' )
 archDistDir = distDir.Dir(buildOS).Dir(buildArch).Dir(buildType)
 Export( 'archDistDir' )
-packageName = 'Fabric NPAPI Plugin'
+packageName = 'FabricNPAPIPlugin'
 Export( 'packageName' )
-installerName = packageName + ' ' + buildOS + ' ' + buildArch + ' ' + FABRIC_VERSION
+installerName = packageName + '-' + buildOS + '-' + buildArch + '-' + FABRIC_VERSION
 Export( 'installerName' )
 if buildOS == "Darwin":
   installerRootDistDir = archDistDir.Dir( packageName )
