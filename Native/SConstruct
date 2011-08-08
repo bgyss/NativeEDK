@@ -19,12 +19,17 @@ thirdPartyDir = os.path.join(os.getcwd(), 'ThirdParty' )
 # don't forget to consider the expiry
 # and cache generation!!
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FABRIC_NAME='Fabric Engine'
+FABRIC_COMPANY_NAME='Fabric Technologies Inc.'
+FABRIC_DESC='High Performance Computing for the Web'
+FABRIC_COPYRIGHT='Copyright 2010-2011 ' + FABRIC_COMPANY_NAME + '  All rights reserved.'
+FABRIC_URL="http://fabric-engine.com"
 FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
-FABRIC_VERSION_REV='0'
-FABRIC_VERSION_SUFFIX='-alpha7'
+FABRIC_VERSION_REV='8'
+FABRIC_VERSION_SUFFIX='-alpha'
 FABRIC_EXPIRY='1314885954'
-FABRIC_CACHE_GENERATION='2'
+FABRIC_CACHE_GENERATION='3'
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 FABRIC_VERSION = FABRIC_VERSION_MAJ + '.' + FABRIC_VERSION_MIN + '.' + FABRIC_VERSION_REV + FABRIC_VERSION_SUFFIX
@@ -34,6 +39,11 @@ template = Builder( action = "\
   sed \
     -e 's/{{FABRIC_OS}}/"+buildOS+"/g' \
     -e 's/{{FABRIC_ARCH}}/"+buildArch+"/g' \
+    -e 's/{{FABRIC_COMPANY_NAME}}/"+FABRIC_COMPANY_NAME+"/g' \
+    -e 's/{{FABRIC_NAME}}/"+FABRIC_NAME+"/g' \
+    -e 's/{{FABRIC_DESC}}/"+FABRIC_DESC+"/g' \
+    -e 's/{{FABRIC_COPYRIGHT}}/"+FABRIC_COPYRIGHT+"/g' \
+    -e 's,{{FABRIC_URL}},"+FABRIC_URL+",g' \
     -e 's/{{FABRIC_VERSION_MAJ}}/"+FABRIC_VERSION_MAJ+"/g' \
     -e 's/{{FABRIC_VERSION_MIN}}/"+FABRIC_VERSION_MIN+"/g' \
     -e 's/{{FABRIC_VERSION_REV}}/"+FABRIC_VERSION_REV+"/g' \
@@ -175,9 +185,9 @@ env.Append( BUILDDIR = [Dir(buildDir).abspath] )
 distDir = env.Dir( '#dist' )
 archDistDir = distDir.Dir(buildOS).Dir(buildArch).Dir(buildType)
 Export( 'archDistDir' )
-packageName = 'Fabric NPAPI Plugin'
+packageName = 'FabricNPAPIPlugin'
 Export( 'packageName' )
-installerName = packageName + ' ' + buildOS + ' ' + buildArch + ' ' + FABRIC_VERSION
+installerName = packageName + '-' + buildOS + '-' + buildArch + '-' + FABRIC_VERSION
 Export( 'installerName' )
 if buildOS == "Darwin":
   installerRootDistDir = archDistDir.Dir( packageName )
