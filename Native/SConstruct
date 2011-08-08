@@ -185,7 +185,7 @@ env.Append( BUILDDIR = [Dir(buildDir).abspath] )
 distDir = env.Dir( '#dist' )
 archDistDir = distDir.Dir(buildOS).Dir(buildArch).Dir(buildType)
 Export( 'archDistDir' )
-packageName = 'FabricNPAPIPlugin'
+packageName = 'FabricEngine'
 Export( 'packageName' )
 installerName = packageName + '-' + buildOS + '-' + buildArch + '-' + FABRIC_VERSION
 Export( 'installerName' )
