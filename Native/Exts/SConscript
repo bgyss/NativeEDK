@@ -3,7 +3,7 @@
 #
 
 import os, shutil
-Import( 'baseEnv', 'buildOS' )
+Import( 'baseEnv', 'buildOS', 'fabricExtsDistDir' )
 
 extsEnv = baseEnv.Clone()
 Export( 'extsEnv' )
@@ -32,12 +32,7 @@ def CopyToAppdataIfWindowsMethod(nbargs, args):
 
 extsEnv.AddMethod(CopyToAppdataIfWindowsMethod, "CopyToAppdataIfWindows")
 
-exts = []
-
-SConscript( dirs=['Sample'] )
-exts += ['sampleExts']
-
-SConscript( dirs=['Builtin'] )
-exts += ['builtinExts']
-    
-Alias( 'exts', exts )
+extFiles = SConscript( dirs=['Builtin','Sample'] )
+Export( 'extFiles' )
+Install( fabricExtsDistDir, extFiles )
+Alias( 'exts', extFiles )

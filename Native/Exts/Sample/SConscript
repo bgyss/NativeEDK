@@ -2,19 +2,6 @@
 # Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
 #
 
-import os, shutil
-Import( 'baseEnv', 'buildOS' )
+sampleExtFiles = SConscript( dirs=['Time','Except'] )
 
-aliases = [
-    'timeSampleExt',
-    'exceptSampleExt',
-]
-
-dirs = [
-    'Time',
-    'Except',
-]
-
-SConscript( dirs=dirs )
-
-Alias( 'sampleExts', aliases )
+Return( 'sampleExtFiles' )

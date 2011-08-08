@@ -7,12 +7,6 @@ Import( 'extsEnv', 'fabricExtsDistDir' )
 timeSampleExtEnv = extsEnv.Clone()
 timeSampleExt = timeSampleExtEnv.SharedLibrary( 'TimeSample', Glob('*.cpp') ),
 timeSampleManifest = timeSampleExtEnv.File( 'TimeSample.fpm.json' ),
+timeSampleExtFiles = [timeSampleManifest, timeSampleExt]
 
-installAction = Install( fabricExtsDistDir, [timeSampleExt,timeSampleManifest] )
-extsEnv.CopyToAppdataIfWindows( installAction )
-
-Alias( 'timeSampleExt', [
-  timeSampleExt,
-  timeSampleManifest,
-  installAction
-] )
+Return( 'timeSampleExtFiles' )
