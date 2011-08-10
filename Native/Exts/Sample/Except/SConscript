@@ -7,6 +7,7 @@ Import( 'extsEnv', 'fabricExtsDistDir' )
 exceptSampleExtEnv = extsEnv.Clone()
 exceptSampleExt = exceptSampleExtEnv.SharedLibrary( 'ExceptSample', Glob('*.cpp') ),
 exceptSampleManifest = exceptSampleExtEnv.File( 'ExceptSample.fpm.json' ),
-exceptFiles = [exceptSampleManifest, exceptSampleExt]
+exceptSampleKL = exceptSampleExtEnv.File( 'ExceptSample.kl' ),
+exceptFiles = [exceptSampleManifest, exceptSampleExt, exceptSampleKL]
 
 Return( 'exceptFiles' )

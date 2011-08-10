@@ -1,0 +1,1 @@
+function currentTimeString( io String result );
