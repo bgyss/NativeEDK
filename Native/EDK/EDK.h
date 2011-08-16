@@ -357,7 +357,7 @@ namespace Fabric
           if ( (!m_bits && size > 0)
             || (m_bits && m_bits->refCount.getValue() > 1)
             || (m_bits && size == 0)
-            || (m_bits && m_bits->allocSize < size + 1)
+            || (m_bits && m_bits->allocSize < size)
             )
           {
             bits_t *newBits;
