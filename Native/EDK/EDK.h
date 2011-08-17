@@ -357,7 +357,7 @@ namespace Fabric
           if ( (!m_bits && size > 0)
             || (m_bits && m_bits->refCount.getValue() > 1)
             || (m_bits && size == 0)
-            || (m_bits && m_bits->allocSize < size + 1)
+            || (m_bits && m_bits->allocSize < size)
             )
           {
             bits_t *newBits;
@@ -367,14 +367,12 @@ namespace Fabric
               newBits = reinterpret_cast<bits_t *>( malloc( sizeof(bits_t) + newAllocSize * sizeof(Member) ) );
               newBits->refCount.setValue( 1 );
               newBits->allocSize = newAllocSize;
-              if ( m_bits )
-              {
-                newBits->size = m_bits->size;
-                memset( newBits->members, 0, newBits->size * sizeof(Member) );
-                for ( size_t i=0; i<newBits->size; ++i )
-                  newBits->members[i] = m_bits->members[i];
-              }
-              else newBits->size = size;
+              newBits->size = size;
+              size_t oldSize = m_bits? m_bits->size: 0;
+              if ( oldSize > 0 )
+                memcpy( &newBits->members[0], &m_bits->members[0], oldSize * sizeof(Member) );
+              if ( size > oldSize )
+                memset( &newBits->members[oldSize], 0, (size - oldSize) * sizeof(Member) );
             }
             else newBits = 0;
           
