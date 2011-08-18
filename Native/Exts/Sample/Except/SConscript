@@ -2,10 +2,10 @@
 # Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
 #
 
-Import( 'extsEnv', 'fabricExtsDistDir' )
+Import( 'extsEnv', 'fabricExtsDistDir', 'ExtSLName' )
 
 exceptSampleExtEnv = extsEnv.Clone()
-exceptSampleExt = exceptSampleExtEnv.SharedLibrary( 'ExceptSample', Glob('*.cpp') ),
+exceptSampleExt = exceptSampleExtEnv.SharedLibrary( ExtSLName('ExceptSample'), Glob('*.cpp') ),
 exceptSampleManifest = exceptSampleExtEnv.File( 'ExceptSample.fpm.json' ),
 exceptSampleKL = exceptSampleExtEnv.File( 'ExceptSample.kl' ),
 exceptFiles = [exceptSampleManifest, exceptSampleExt, exceptSampleKL]
