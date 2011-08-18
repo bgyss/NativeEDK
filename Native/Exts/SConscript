@@ -3,10 +3,12 @@
 #
 
 import os, shutil
-Import( 'baseEnv', 'buildOS', 'fabricExtsDistDir' )
+Import( 'baseEnv', 'buildOS', 'buildArch', 'fabricExtsDistDir' )
 
 extsEnv = baseEnv.Clone()
-Export( 'extsEnv' )
+def ExtSLName( baseName ):
+  return baseName + "-" + buildOS + "-" + buildArch
+Export( 'extsEnv', 'ExtSLName' )
 
 # On windows, files have to be copied to the AppData directory (we can't create a symlink).
 # We do this copy here, since we don't have a proper installer.
