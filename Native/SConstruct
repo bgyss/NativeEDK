@@ -146,10 +146,10 @@ buildFlags = {
       'linkflags': [ ]
       },
     'Debug' : {
-      'ccflags': [ '/Od', '/Z7', '/MDd' ]
+      'ccflags': [ '/Od', '/Z7', '/MTd' ]
       },
     'Release' : {
-      'ccflags': [ '/Ox', '/MD' ]
+      'ccflags': [ '/Ox', '/MT' ]
       },
     }
   }
