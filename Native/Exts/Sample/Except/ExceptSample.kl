@@ -1,0 +1,1 @@
+function throw( in String desc ) = 'exceptThrow';

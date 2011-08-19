@@ -1,4 +1,4 @@
 {
   "libs": "TimeSample",
-  "code": "function currentTimeString( io String result );\n"
+  "code": "TimeSample.kl"
 }

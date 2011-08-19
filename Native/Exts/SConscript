@@ -3,10 +3,12 @@
 #
 
 import os, shutil
-Import( 'baseEnv', 'buildOS' )
+Import( 'baseEnv', 'buildOS', 'buildArch', 'fabricExtsDistDir' )
 
 extsEnv = baseEnv.Clone()
-Export( 'extsEnv' )
+def ExtSLName( baseName ):
+  return baseName + "-" + buildOS + "-" + buildArch
+Export( 'extsEnv', 'ExtSLName' )
 
 # On windows, files have to be copied to the AppData directory (we can't create a symlink).
 # We do this copy here, since we don't have a proper installer.
@@ -32,12 +34,7 @@ def CopyToAppdataIfWindowsMethod(nbargs, args):
 
 extsEnv.AddMethod(CopyToAppdataIfWindowsMethod, "CopyToAppdataIfWindows")
 
-exts = []
-
-SConscript( dirs=['Sample'] )
-exts += ['sampleExts']
-
-SConscript( dirs=['Builtin'] )
-exts += ['builtinExts']
-    
-Alias( 'exts', exts )
+extFiles = SConscript( dirs=['Builtin','Sample'] )
+Export( 'extFiles' )
+Install( fabricExtsDistDir, extFiles )
+Alias( 'exts', extFiles )

@@ -1,4 +1,4 @@
 {
   "libs": "ExceptSample",
-  "code": "function throw( in String desc ) = 'exceptThrow';\n"
+  "code": "ExceptSample.kl"
 }

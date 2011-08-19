@@ -2,17 +2,12 @@
 # Copyright 2010-2011 Fabric Technologies Inc. All rights reserved.
 #
 
-Import( 'extsEnv', 'fabricExtsDistDir' )
+Import( 'extsEnv', 'fabricExtsDistDir', 'ExtSLName' )
 
 timeSampleExtEnv = extsEnv.Clone()
-timeSampleExt = timeSampleExtEnv.SharedLibrary( 'TimeSample', Glob('*.cpp') ),
+timeSampleExt = timeSampleExtEnv.SharedLibrary( ExtSLName('TimeSample'), Glob('*.cpp') ),
 timeSampleManifest = timeSampleExtEnv.File( 'TimeSample.fpm.json' ),
+timeSampleKL = timeSampleExtEnv.File( 'TimeSample.kl' ),
+timeSampleExtFiles = [timeSampleManifest, timeSampleExt, timeSampleKL]
 
-installAction = Install( fabricExtsDistDir, [timeSampleExt,timeSampleManifest] )
-extsEnv.CopyToAppdataIfWindows( installAction )
-
-Alias( 'timeSampleExt', [
-  timeSampleExt,
-  timeSampleManifest,
-  installAction
-] )
+Return( 'timeSampleExtFiles' )
