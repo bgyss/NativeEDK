@@ -9,6 +9,7 @@
 #include <Fabric/Base/Util/Bits.h>
 #include <Fabric/Base/Util/AtomicSize.h>
 #include <Fabric/Base/Exception.h>
+#include <Fabric/EDK/Common.h>
 
 #if defined(FABRIC_OS_WINDOWS)
 # define FABRIC_EXT_EXPORT extern "C" __declspec(dllexport)
@@ -27,7 +28,8 @@ namespace Fabric
   namespace EDK
   {
     typedef Fabric::Exception Exception;
-    
+    static Callbacks s_callbacks;
+
     namespace KL
     {
       typedef bool Boolean;
@@ -54,7 +56,7 @@ namespace Fabric
           if ( m_bits != that.m_bits )
           {
             if ( m_bits && m_bits->refCount.decrementAndGetValue() == 0 )
-              free( m_bits );
+              ( *s_callbacks.m_free )( m_bits );
             m_bits = that.m_bits;
             if ( m_bits )
               m_bits->refCount.increment();
@@ -137,7 +139,7 @@ namespace Fabric
             if ( capacity )
             {
               size_t newAllocSize = AllocSizeForLength( capacity );
-              newBits = reinterpret_cast<bits_t *>( malloc( sizeof(bits_t) + newAllocSize ) );
+              newBits = reinterpret_cast<bits_t *>( ( *s_callbacks.m_malloc )( sizeof(bits_t) + newAllocSize ) );
               newBits->refCount.setValue( 1 );
               newBits->allocSize = newAllocSize;
               if ( m_bits )
@@ -147,7 +149,7 @@ namespace Fabric
             else newBits = 0;
           
             if ( m_bits && m_bits->refCount.decrementAndGetValue() == 0 )
-              free( m_bits );
+              ( *s_callbacks.m_free )( m_bits );
             m_bits = newBits;
           }
         }
@@ -214,7 +216,7 @@ namespace Fabric
         ~String()
         {
           if ( m_bits && m_bits->refCount.decrementAndGetValue() == 0 )
-            free( m_bits );
+            ( *s_callbacks.m_free )( m_bits );
         }
         
         typedef StringBase IN;
@@ -325,7 +327,7 @@ namespace Fabric
           if ( m_bits != that.m_bits )
           {
             if ( m_bits && m_bits->refCount.decrementAndGetValue() == 0 )
-              free( m_bits );
+              ( *s_callbacks.m_free )( m_bits );
             m_bits = that.m_bits;
             if ( m_bits )
               m_bits->refCount.increment();
@@ -375,7 +377,7 @@ namespace Fabric
             if ( size )
             {
               size_t newAllocSize = AllocSizeForSize( size );
-              newBits = reinterpret_cast<bits_t *>( malloc( sizeof(bits_t) + newAllocSize * sizeof(Member) ) );
+              newBits = reinterpret_cast<bits_t *>( ( *s_callbacks.m_malloc )( sizeof(bits_t) + newAllocSize * sizeof(Member) ) );
               newBits->refCount.setValue( 1 );
               newBits->allocSize = newAllocSize;
               newBits->size = size;
@@ -388,7 +390,7 @@ namespace Fabric
             else newBits = 0;
           
             if ( m_bits && m_bits->refCount.decrementAndGetValue() == 0 )
-              free( m_bits );
+              ( *s_callbacks.m_free )( m_bits );
             m_bits = newBits;
           }
         }
@@ -463,5 +465,11 @@ namespace Fabric
     };
   };
 };
+
+#define IMPLEMENT_FABRIC_EDK_ENTRIES \
+  FABRIC_EXT_EXPORT void FabricEDKInit( const Fabric::EDK::Callbacks& callbacks ) \
+  { \
+    Fabric::EDK::s_callbacks = callbacks; \
+  }
 
 #endif //_FABRIC_EDK_H

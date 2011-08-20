@@ -146,10 +146,10 @@ buildFlags = {
       'linkflags': [ ]
       },
     'Debug' : {
-      'ccflags': [ '/Od', '/Z7', '/MDd' ]
+      'ccflags': [ '/Od', '/Z7', '/MTd' ]
       },
     'Release' : {
-      'ccflags': [ '/Ox', '/MD' ]
+      'ccflags': [ '/Ox', '/MT' ]
       },
     }
   }
@@ -188,7 +188,7 @@ archDistDir = distDir.Dir(buildOS).Dir(buildArch).Dir(buildType)
 Export( 'archDistDir' )
 packageName = 'FabricEngine'
 Export( 'packageName' )
-installerName = packageName + '-' + buildOS + '-' + buildArch + '-' + FABRIC_VERSION
+installerName = packageName + '-' + buildOS + '-' + buildArch
 Export( 'installerName' )
 if buildOS == "Darwin":
   installerRootDistDir = archDistDir.Dir( packageName )
