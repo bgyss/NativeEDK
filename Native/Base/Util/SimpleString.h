@@ -81,6 +81,11 @@ namespace Fabric
         return getCString();
       }
       
+      char const *c_str() const
+      {
+        return getCString();
+      }
+      
       char *getTail()
       {
         return &m_data[m_length];
