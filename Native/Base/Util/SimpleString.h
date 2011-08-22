@@ -22,9 +22,9 @@ namespace Fabric
         : m_data( 0 )
         , m_length( 0 )
         , m_allocSize( 0 )
-        , m_mallocFct( 0 )//[JCG 20110822 Ensure a consistant malloc/free through different DLLs]
-        , m_reallocFct( 0 )
-        , m_freeFct( 0 )
+        , m_mallocFct( malloc )//[JCG 20110822 Ensure a consistant malloc/free through different DLLs]
+        , m_reallocFct( realloc )
+        , m_freeFct( free )
       {
       }
       
