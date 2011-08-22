@@ -22,6 +22,9 @@ namespace Fabric
         : m_data( 0 )
         , m_length( 0 )
         , m_allocSize( 0 )
+        , m_mallocFct( 0 )//[JCG 20110822 Ensure a consistant malloc/free through different DLLs]
+        , m_reallocFct( 0 )
+        , m_freeFct( 0 )
       {
       }
       
@@ -48,13 +51,13 @@ namespace Fabric
       ~SimpleString()
       {
         if ( m_data )
-          free( m_data );
+          (*m_freeFct)( m_data );
       }
       
       SimpleString &operator =( SimpleString const &that )
       {
         if ( m_data )
-          free( m_data );
+          (*m_freeFct)( m_data );
         init( that.m_data, that.m_length );
         return *this;
       }
@@ -99,8 +102,8 @@ namespace Fabric
         {
           m_allocSize = AllocSizeForLengthPlusOne( lengthPlusOne );
           if ( m_data )
-            m_data = (char *)realloc( m_data, m_allocSize );
-          else m_data = (char *)malloc( m_allocSize );
+            m_data = (char *)(m_reallocFct)( m_data, m_allocSize );
+          else m_data = (char *)(*m_mallocFct)( m_allocSize );
         }
         return m_data;
       }
@@ -165,10 +168,15 @@ namespace Fabric
     
       void init( char const *data, size_t length )
       {
+        //[JCG 20110822 Ensure a consistant malloc/free through different DLLs]
+        m_mallocFct = malloc;
+        m_reallocFct = realloc;
+        m_freeFct = free;
+
         if ( (m_length = length) )
         {
           m_allocSize = AllocSizeForLengthPlusOne( length + 1 );
-          m_data = (char *)malloc( m_allocSize );
+          m_data = (char *)(*m_mallocFct)( m_allocSize );
           memcpy( m_data, data, length );
           m_data[length] = '\0';
         }
@@ -184,6 +192,11 @@ namespace Fabric
       char *m_data;
       size_t m_length;
       size_t m_allocSize;
+
+      //[JCG 20110822 Ensure a consistant malloc/free through different DLLs]
+      void *( *m_mallocFct )( size_t );
+      void *( *m_reallocFct )( void *, size_t );
+      void ( *m_freeFct )( void * );
     };
 
     inline SimpleString operator +( Util::SimpleString const &left, Util::SimpleString const &right )
