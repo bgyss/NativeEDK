@@ -6,12 +6,12 @@
 #define _FABRIC_JSON_STRING_H
 
 #include <Fabric/Base/JSON/Value.h>
+#include <string.h>
 
 #include <string>
 #include <yajl_gen.h>
 
 #if defined(FABRIC_OS_LINUX)
-	#include <string.h>
 	#include <stdlib.h>
 #endif
 
@@ -27,12 +27,12 @@ namespace Fabric
       {
         return new String( data, length );
       }
-      
+
       static RC::Handle<String> Create( std::string const &string )
       {
         return new String( string );
       }
-      
+
       virtual bool isString() const { return true; }
       
       std::string const &value() const
