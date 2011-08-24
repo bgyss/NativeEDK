@@ -80,7 +80,7 @@ if not ARGUMENTS.get( 'VERBOSE' ):
 env.Append( BUILDERS = { 'Template': template } )
 
 if buildType == 'Release':
-  env.Append( CPPDEFINES = 'NDEBUG' )
+  env.Append( CPPDEFINES = ['NDEBUG'] )
 
 if buildOS == 'Windows' and buildType == 'Debug':
   env.Append( PDB='${TARGET.base}.pdb' )
@@ -178,6 +178,9 @@ for subType in subTypes:
       env.Append( CXXFLAGS = osSubFlags['cxxflags'] )
     if 'linkflags' in osSubFlags:
       env.Append( LINKFLAGS = osSubFlags['linkflags'] )
+
+# [pzion 20110823] Horrible hack: ensure that GLEW_STATIC is defined everywhere
+env.Append( CPPDEFINES = ['GLEW_STATIC'] )
 
 buildDirBase = os.path.join( '#build', buildOS, buildArch, buildType )
 buildDir = os.path.join( buildDirBase, 'Fabric' )
