@@ -1,0 +1,29 @@
+- Core: replace traditional installers with Chrome and Firefox extensions
+
+- Core: files in compiler cache are deleted after 30 days
+
+- Documentation: Tutorial fixes
+
+- Documentation: Added character tutorials
+
+- EDK: fix resizing of variable-length arrays
+
+- Extensions: various fixes for .OBJ file loader
+
+- SceneGraph: add ability to query mesh bounding boxes from Javascript
+
+- SceneGraph: redrawing pipeline fixes
+
+- SceneGraph: added support for transparent materials
+
+- SceneGraph: added glass shader
+
+- SceneGraph: added support for cube maps
+
+- Core: added 64-bit build for OS X
+
+- Core: Linux: removed dependency on gtkglext-1.0 library
+
+- Core: Windows: removed dependency on Microsoft shared library redistribution package
+
+- SceneGraph: fix sphere generation
