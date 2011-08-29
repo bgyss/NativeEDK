@@ -187,6 +187,7 @@ buildDir = os.path.join( buildDirBase, 'Fabric' )
 env.Append( BUILDDIR = [Dir(buildDir).abspath] )
 
 distDir = env.Dir( '#dist' )
+Export( 'distDir' )
 archDistDir = distDir.Dir(buildOS).Dir(buildArch).Dir(buildType)
 Export( 'archDistDir' )
 packageName = 'FabricEngine'
