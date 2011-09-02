@@ -8,7 +8,10 @@ CacheDir( '.sconscache' )
 
 buildOS = platform.system()
 Export( 'buildOS' );
-buildArch = ARGUMENTS.get( 'ARCH', platform.machine() )
+if buildOS == 'Darwin':
+  buildArch = 'universal'
+else:
+  buildArch = ARGUMENTS.get( 'ARCH', platform.machine() )
 Export( 'buildArch' )
 buildType = ARGUMENTS.get( 'TYPE', 'Debug' )
 Export( 'buildType' )
@@ -92,13 +95,9 @@ buildFlags = {
     'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden' ],
     'cxxflags': [ '-fno-rtti' ],
     'linkflags' : [ '-w' ],
-    'i386' : {
-      'ccflags': [ '-m32' ],
-      'linkflags': [ '-m32' ]
-      },
-    'x86_64' : {
-      'ccflags': [ '-m64' ],
-      'linkflags': [ '-m64' ]
+    'universal' : {
+      'ccflags': [ '-arch', 'i386', '-arch', 'x86_64' ],
+      'linkflags': [ '-arch', 'i386', '-arch', 'x86_64' ]
       },
     'Debug' : {
       'ccflags': [ '-g' ]
