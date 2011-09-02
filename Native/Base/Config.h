@@ -20,7 +20,9 @@
 # define FABRIC_OS_WINDOWS
 # define FABRIC_WIN32
 
-# define WIN32_LEAN_AND_MEAN   // Avoid unnecessary cruft
+# if !defined( INCLUDE_WINDOWS_UI )
+#  define WIN32_LEAN_AND_MEAN   // Avoid unnecessary cruft
+# endif
 # define NOMINMAX              // Don't define min/max as macros, stupid
 # if !defined( WIN32 )
 #  define WIN32 1
