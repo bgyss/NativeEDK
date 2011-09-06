@@ -8,7 +8,10 @@ CacheDir( '.sconscache' )
 
 buildOS = platform.system()
 Export( 'buildOS' );
-buildArch = ARGUMENTS.get( 'ARCH', platform.machine() )
+if buildOS == 'Darwin':
+  buildArch = 'universal'
+else:
+  buildArch = ARGUMENTS.get( 'ARCH', platform.machine() )
 Export( 'buildArch' )
 buildType = ARGUMENTS.get( 'TYPE', 'Debug' )
 Export( 'buildType' )
@@ -26,11 +29,11 @@ FABRIC_COPYRIGHT='Copyright 2010-2011 ' + FABRIC_COMPANY_NAME + '  All rights re
 FABRIC_URL="http://fabric-engine.com"
 FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
-FABRIC_VERSION_REV='8'
+FABRIC_VERSION_REV='11'
 FABRIC_VERSION_SUFFIX='-alpha'
 # To generate expiry 30 days from now: echo $(($(date +%s) + 30*24*60*60))
-FABRIC_EXPIRY='1316096556'
-FABRIC_CACHE_GENERATION='4'
+FABRIC_EXPIRY='1317219461'
+FABRIC_CACHE_GENERATION='8'
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 FABRIC_VERSION = FABRIC_VERSION_MAJ + '.' + FABRIC_VERSION_MIN + '.' + FABRIC_VERSION_REV + FABRIC_VERSION_SUFFIX
@@ -80,7 +83,7 @@ if not ARGUMENTS.get( 'VERBOSE' ):
 env.Append( BUILDERS = { 'Template': template } )
 
 if buildType == 'Release':
-  env.Append( CPPDEFINES = 'NDEBUG' )
+  env.Append( CPPDEFINES = ['NDEBUG'] )
 
 if buildOS == 'Windows' and buildType == 'Debug':
   env.Append( PDB='${TARGET.base}.pdb' )
@@ -92,13 +95,9 @@ buildFlags = {
     'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden' ],
     'cxxflags': [ '-fno-rtti' ],
     'linkflags' : [ '-w' ],
-    'i386' : {
-      'ccflags': [ '-m32' ],
-      'linkflags': [ '-m32' ]
-      },
-    'x86_64' : {
-      'ccflags': [ '-m64' ],
-      'linkflags': [ '-m64' ]
+    'universal' : {
+      'ccflags': [ '-arch', 'i386', '-arch', 'x86_64' ],
+      'linkflags': [ '-arch', 'i386', '-arch', 'x86_64' ]
       },
     'Debug' : {
       'ccflags': [ '-g' ]
@@ -179,11 +178,15 @@ for subType in subTypes:
     if 'linkflags' in osSubFlags:
       env.Append( LINKFLAGS = osSubFlags['linkflags'] )
 
+# [pzion 20110823] Horrible hack: ensure that GLEW_STATIC is defined everywhere
+env.Append( CPPDEFINES = ['GLEW_STATIC'] )
+
 buildDirBase = os.path.join( '#build', buildOS, buildArch, buildType )
 buildDir = os.path.join( buildDirBase, 'Fabric' )
 env.Append( BUILDDIR = [Dir(buildDir).abspath] )
 
 distDir = env.Dir( '#dist' )
+Export( 'distDir' )
 archDistDir = distDir.Dir(buildOS).Dir(buildArch).Dir(buildType)
 Export( 'archDistDir' )
 packageName = 'FabricEngine'

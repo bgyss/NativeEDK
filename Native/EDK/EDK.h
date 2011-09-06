@@ -393,6 +393,8 @@ namespace Fabric
               ( *s_callbacks.m_free )( m_bits );
             m_bits = newBits;
           }
+          else if(m_bits)
+            m_bits->size = size;
         }
       
       protected:

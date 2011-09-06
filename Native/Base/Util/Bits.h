@@ -5,6 +5,7 @@
 #ifndef _FABRIC_UTIL_BITS_H
 #define _FABRIC_UTIL_BITS_H
 
+#include <Fabric/Base/Config.h>
 #include <vector>
 #include <stdint.h>
 

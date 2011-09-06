@@ -5,9 +5,9 @@
 #ifndef _FABRIC_EXCEPTION_H
 #define _FABRIC_EXCEPTION_H
 
-#include <string>
 #include <stdarg.h>
 #include <stdio.h>
+#include <Fabric/Base/Util/SimpleString.h>
 
 namespace Fabric
 {
@@ -25,7 +25,7 @@ namespace Fabric
       m_desc = buffer;
     }
     
-    Exception( std::string const &desc )
+    Exception( Util::SimpleString const &desc )
       : m_desc( desc )
     {
     }
@@ -40,40 +40,49 @@ namespace Fabric
       m_desc = that.m_desc;
       return *this;
     }
-    
-    std::string const &getDesc() const
+
+    virtual ~Exception()
+    {
+    }
+
+    Util::SimpleString const &getDesc() const
     {
       return m_desc;
     }
     
-    operator std::string() const
+    operator Util::SimpleString() const
     {
       return m_desc;
     }
 
+    operator char const *() const
+    {
+      return m_desc.getCString();
+    }
+
   private:
   
-    std::string m_desc;
+    Util::SimpleString m_desc;
   };
   
-  inline Exception operator +( std::string const &left, Exception const &right )
+  inline Exception operator +( Util::SimpleString const &left, Exception const &right )
   {
-    return Exception( left + right.getDesc() );
+    return left + right.getDesc();
   }
   
   inline Exception operator +( const char *left, Exception const &right )
   {
-    return std::string(left) + right.getDesc();
+    return left + right.getDesc();
   }
   
-  inline Exception operator +( Exception const &left, std::string const &right )
+  inline Exception operator +( Exception const &left, Util::SimpleString const &right )
   {
-    return Exception( left.getDesc() + right );
+    return left.getDesc() + right;
   }
   
   inline Exception operator +( Exception const &left, const char *right )
   {
-    return left.getDesc() + std::string(right);
+    return left.getDesc() + right;
   }
 };
 
