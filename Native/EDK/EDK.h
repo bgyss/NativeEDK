@@ -266,7 +266,20 @@ namespace Fabric
         Scalar z;
         Scalar t;
       };
+
+      struct Quat
+      {
+        Vec3 v;
+        Scalar w;
+      };
       
+      struct Xfo
+      {
+        Quat ori;
+        Vec3 tr;
+        Vec3 sc;
+      };
+
       struct Mat22
       {
         Vec2 row0;
