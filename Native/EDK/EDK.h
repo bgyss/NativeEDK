@@ -304,7 +304,17 @@ namespace Fabric
           : m_bits(0)
         {
         }
-      
+        
+        VariableArray( size_t size )
+        {
+          size_t newAllocSize = AllocSizeForSize( size );
+          m_bits = reinterpret_cast<bits_t *>( malloc( sizeof(bits_t) + newAllocSize * sizeof(Member) ) );
+          m_bits->refCount.setValue( 1 );
+          m_bits->allocSize = newAllocSize;
+          m_bits->size = size;
+          memset( &m_bits->members[0], 0, size * sizeof(Member) );
+        }
+        
         VariableArray( VariableArray const &that )
           : m_bits( that.m_bits )
         {
@@ -322,6 +332,7 @@ namespace Fabric
             if ( m_bits )
               m_bits->refCount.increment();
           }
+          return *this;
         }
       
         VariableArray &operator =( VariableArray const &that )
@@ -382,6 +393,8 @@ namespace Fabric
               ( *s_callbacks.m_free )( m_bits );
             m_bits = newBits;
           }
+          else if(m_bits)
+            m_bits->size = size;
         }
       
       protected:
@@ -394,6 +407,62 @@ namespace Fabric
       private:
     
         bits_t *m_bits;
+      };
+
+      template< class Member > class SlicedArray
+      {
+      public:
+    
+        SlicedArray( size_t size )
+          : m_offset( 0 )
+          , m_size( size )
+          , m_variableArray( size )
+        {
+        }
+      
+        SlicedArray( SlicedArray const &that )
+          : m_offset( that.m_offset )
+          , m_size( that.size )
+          , m_variableArray( that.m_variableArray )
+        {
+        }
+      
+        SlicedArray( SlicedArray const &that, size_t offset, size_t size )
+          : m_offset( that.m_offset )
+          , m_size( that.size )
+          , m_variableArray( that.m_variableArray )
+        {
+          if ( offset + size > m_variableArray.size() )
+            throw Exception( "SlicedArray: offset and/or size out of range" );
+        }
+      
+        SlicedArray &operator =( SlicedArray const &that )
+        {
+          m_offset = that.m_offset;
+          m_size = that.m_size;
+          m_variableArray = that.m_variableArray;
+        }
+      
+        Member const &operator[]( size_t index ) const
+        {
+          return m_variableArray[m_offset + index];
+        }
+      
+        Member &operator[]( size_t index )
+        {
+          return m_variableArray[m_offset + index];
+        }
+      
+        size_t size() const
+        {
+          return m_size;
+        }
+      
+      private:
+    
+        size_t m_offset;
+        size_t m_size;
+        VariableArray<Member> m_variableArray;
       };
     };
   };
