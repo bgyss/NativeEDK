@@ -133,7 +133,7 @@ buildFlags = {
       '_SECURE_SCL=0'
     ],
     'ccflags': [ 
-      '/GR-', '/EHsc', 
+      '/EHsc', 
       '/wd4624'    ],
     'linkflags': [ 'chkstk.obj' ],
     'x86' : {
