@@ -177,6 +177,30 @@ namespace Fabric
       }
     }
 #endif
+    
+    inline bool IsZero( size_t size, void const *data )
+    {
+      switch ( size )
+      {
+        case 1:
+          return *static_cast<uint8_t const *>(data) == 0;
+        case 2:
+          return *static_cast<uint16_t const *>(data) == 0;
+        case 4:
+          return *static_cast<uint32_t const *>(data) == 0;
+        case 8:
+          return *static_cast<uint64_t const *>(data) == 0;
+        default:
+        {
+          uint8_t const *p = static_cast<uint8_t const *>(data);
+          uint8_t const *pEnd = p + size;
+          for (; p!=pEnd; ++p)
+            if ( *p != 0 )
+              return false;
+        }
+        return true;
+      }
+    }
   };
 };
 
