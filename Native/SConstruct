@@ -93,7 +93,6 @@ buildFlags = {
   # === OSX ===
   'Darwin': {
     'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden' ],
-    'cxxflags': [ '-fno-rtti' ],
     'linkflags' : [ '-w' ],
     'universal' : {
       'ccflags': [ '-arch', 'i386', '-arch', 'x86_64' ],
@@ -109,7 +108,6 @@ buildFlags = {
   # === LINUX ===
   'Linux': {
     'ccflags': ['-fPIC'],
-    'cxxflags': [ '-fno-rtti' ],
     'i686' : {
       'ccflags': [ '-m32' ],
       'linkflags': [ '-m32' ]
