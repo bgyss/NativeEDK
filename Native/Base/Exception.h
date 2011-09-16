@@ -15,6 +15,11 @@ namespace Fabric
   {
   public:
   
+    Exception( size_t length, char const *data )
+      : m_desc( data, length )
+    {
+    }
+  
     Exception( const char *format, ... )
     {
       char buffer[4096];
