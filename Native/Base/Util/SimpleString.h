@@ -181,7 +181,7 @@ namespace Fabric
       
       void initFcts()
       {
-        //[JCG 20110822 Ensure a consistant malloc/free through different DLLs]
+        //[JCG 20110822] Ensure a consistant malloc/free through different DLLs
         m_mallocFct = malloc;
         m_reallocFct = realloc;
         m_freeFct = free;
@@ -226,7 +226,7 @@ namespace Fabric
       size_t m_length;
       size_t m_allocSize;
 
-      //[JCG 20110822 Ensure a consistant malloc/free through different DLLs]
+      //[JCG 20110822] Ensure a consistant malloc/free through different DLLs
       void *( *m_mallocFct )( size_t );
       void *( *m_reallocFct )( void *, size_t );
       void ( *m_freeFct )( void * );
