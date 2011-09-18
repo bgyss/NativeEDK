@@ -15,11 +15,13 @@ namespace Fabric
         : m_malloc(NULL)
         , m_realloc(NULL)
         , m_free(NULL)
+        , m_throwException(NULL)
       {}
 
       void *( *m_malloc )( size_t );
       void *( *m_realloc )( void *, size_t );
       void ( *m_free )( void * );
+      void (*m_throwException)( size_t length, char const *data );
     };
   };
 };
