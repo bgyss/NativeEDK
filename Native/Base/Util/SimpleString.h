@@ -80,6 +80,11 @@ namespace Fabric
         return m_data;
       }
       
+      char const *data() const
+      {
+        return getData();
+      }
+      
       char const *getCString() const
       {
         if ( m_data )
@@ -97,6 +102,16 @@ namespace Fabric
         return getCString();
       }
       
+      std::string getStdString() const
+      {
+        return std::string( m_data, m_length );
+      }
+      
+      std::string stdString() const
+      {
+        return getStdString();
+      }
+      
       char *getTail()
       {
         return &m_data[m_length];
@@ -105,6 +120,11 @@ namespace Fabric
       size_t getLength() const
       {
         return m_length;
+      }
+      
+      size_t length() const
+      {
+        return getLength();
       }
       
       // Ensure we can hold at least length+1 characters
