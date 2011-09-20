@@ -11,5 +11,5 @@ FABRIC_EXT_EXPORT void exceptThrow(
   KL::String::IN desc
   )
 {
-  throw Exception( std::string( desc.data(), desc.length() ) );
+  throwException( std::string( desc.data(), desc.length() ) );
 }

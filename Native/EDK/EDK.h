@@ -27,8 +27,32 @@ namespace Fabric
 {
   namespace EDK
   {
-    typedef Fabric::Exception Exception;
     static Callbacks s_callbacks;
+    
+    void throwException( size_t length, char const *data )
+    {
+      s_callbacks.m_throwException( length, data );
+    }
+    
+    void throwException( char const *cStrFormat, ... )
+    {
+      char cStr[4096];
+      va_list argList;
+      va_start( argList, cStrFormat );
+      int vsnprintfResult = vsnprintf( cStr, 4096, cStrFormat, argList );
+      va_end( argList );
+      if ( vsnprintfResult < 0 )
+      {
+        static const char *malformattedException = "internal error: malformed exception";
+        throwException( strlen( malformattedException ), malformattedException );
+      }
+      else throwException( vsnprintfResult, cStr );
+    }
+    
+    void throwException( std::string const &string )
+    {
+      throwException( string.length(), string.data() );
+    }
 
     namespace KL
     {
@@ -266,7 +290,20 @@ namespace Fabric
         Scalar z;
         Scalar t;
       };
+
+      struct Quat
+      {
+        Vec3 v;
+        Scalar w;
+      };
       
+      struct Xfo
+      {
+        Quat ori;
+        Vec3 tr;
+        Vec3 sc;
+      };
+
       struct Mat22
       {
         Vec2 row0;
