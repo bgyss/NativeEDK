@@ -6,8 +6,9 @@
 #define _FABRIC_JSON_STRING_H
 
 #include <Fabric/Base/JSON/Value.h>
-#include <string.h>
+#include <Fabric/Base/RC/String.h>
 
+#include <string.h>
 #include <string>
 #include <yajl_gen.h>
 
@@ -23,12 +24,22 @@ namespace Fabric
     {
     public:
     
+      static RC::Handle<String> Create( char const *cString )
+      {
+        return new String( cString );
+      }
+
       static RC::Handle<String> Create( char const *data, size_t length )
       {
         return new String( data, length );
       }
 
       static RC::Handle<String> Create( std::string const &string )
+      {
+        return new String( string );
+      }
+
+      static RC::Handle<String> Create( RC::ConstHandle<RC::String> const &string )
       {
         return new String( string );
       }
@@ -57,6 +68,11 @@ namespace Fabric
       
     protected:
     
+      String( char const *cString )
+        : m_string( cString )
+      {
+      }
+    
       String( std::string const &string )
         : m_string( string )
       {
@@ -64,6 +80,11 @@ namespace Fabric
     
       String( char const *data, size_t length )
         : m_string( data, length )
+      {
+      }
+    
+      String( RC::ConstHandle<RC::String> const &string )
+        : m_string( string->stdString() )
       {
       }
     
