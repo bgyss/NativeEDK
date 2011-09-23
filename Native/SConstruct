@@ -58,8 +58,9 @@ template = Builder( action = "\
   <$SOURCE >$TARGET \
 " )
 
+path = os.environ['PATH']+os.pathsep+os.path.join(thirdPartyDir,'bin',buildOS)
 env = Environment(
-  ENV={ 'PATH': os.environ['PATH']+os.pathsep+os.path.join(thirdPartyDir,'bin',buildOS) },
+  ENV={ 'PATH': path },
   FABRIC_BUILD_OS=buildOS,
   FABRIC_BUILD_ARCH=buildArch,
   FABRIC_BUILD_TYPE=buildType,
@@ -68,6 +69,11 @@ env = Environment(
 
 if buildOS == 'Windows':
   env['ENV']['TMP'] = os.environ['TMP']
+
+if buildOS == 'Darwin':
+  #env.Replace( CC = 'gcc-4.2' )
+  #env.Replace( CXX = 'g++-4.2' )
+  env.Replace( YACC = '/opt/local/bin/bison' )
 
 if not ARGUMENTS.get( 'VERBOSE' ):
 	env['CCCOMSTR']       = 'Compiling       $SOURCE'
@@ -92,8 +98,8 @@ if buildOS == 'Windows' and buildType == 'Debug':
 buildFlags = { 
   # === OSX ===
   'Darwin': {
-    'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden' ],
-    'linkflags' : [ '-w' ],
+    'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden', '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk' ],
+    'linkflags' : [ '-w', '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk' ],
     'universal' : {
       'ccflags': [ '-arch', 'i386', '-arch', 'x86_64' ],
       'linkflags': [ '-arch', 'i386', '-arch', 'x86_64' ]
