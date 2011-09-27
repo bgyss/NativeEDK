@@ -98,7 +98,7 @@ if buildOS == 'Windows' and buildType == 'Debug':
 buildFlags = { 
   # === OSX ===
   'Darwin': {
-    'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden', '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk' ],
+    'ccflags': [ '-Wall', '-fvisibility=hidden', '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk' ],
     'linkflags' : [ '-w', '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk' ],
     'universal' : {
       'ccflags': [ '-arch', 'i386', '-arch', 'x86_64' ],
