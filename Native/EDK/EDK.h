@@ -384,6 +384,7 @@ namespace Fabric
       
         Member &member( size_t index )
         {
+          // [pzion 20110928] FIXME: we should split here if our reference count is greater than one
           return m_bits->members[index];
         }
       
@@ -399,6 +400,9 @@ namespace Fabric
       
         void resize( size_t size )
         {
+          if ( !copyOnWrite )
+            throwException( "cannot resize a non-copy-on-write variable array" );
+            
           if ( (!m_bits && size > 0)
             || (m_bits && m_bits->refCount.getValue() > 1)
             || (m_bits && size == 0)
@@ -494,7 +498,7 @@ namespace Fabric
     
         size_t m_offset;
         size_t m_size;
-        VariableArray<Member> m_variableArray;
+        VariableArray< Member, false > m_variableArray;
       };
     };
   };
