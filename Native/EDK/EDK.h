@@ -13,8 +13,14 @@
 
 #if defined(FABRIC_OS_WINDOWS)
 # define FABRIC_EXT_EXPORT extern "C" __declspec(dllexport)
+# define FABRIC_EXT_KL_STRUCT( name, content ) \
+ __pragma( pack(push, 1) ) \
+ struct name content \
+ __pragma( pack(pop) )
 #else
 # define FABRIC_EXT_EXPORT extern "C" __attribute__ ((visibility("default")))
+# define FABRIC_EXT_KL_STRUCT( name, content ) \
+ struct __attribute__((__packed__)) name content
 #endif
 
 #if defined(FABRIC_OS_LINUX)
@@ -247,85 +253,74 @@ namespace Fabric
         typedef StringBase &IO;
       };
     
-      struct RGBA
-      {
+      FABRIC_EXT_KL_STRUCT( RGBA, {
         Byte r;
         Byte g;
         Byte b;
         Byte a;
-      };
+      } );
     
-      struct RGB
-      {
+      FABRIC_EXT_KL_STRUCT( RGB, {
         Byte r;
         Byte g;
         Byte b;
-      };
+      } );
     
-      struct Color
-      {
+      FABRIC_EXT_KL_STRUCT( Color, {
         Scalar r;
         Scalar g;
         Scalar b;
         Scalar a;
-      };
+      } );
       
-      struct Vec2
-      {
+      FABRIC_EXT_KL_STRUCT( Vec2, {
         Scalar x;
         Scalar y;
-      };
+      } );
     
-      struct Vec3
-      {
+      FABRIC_EXT_KL_STRUCT( Vec3, {
         Scalar x;
         Scalar y;
         Scalar z;
-      };
+      } );
     
-      struct Vec4
-      {
+      FABRIC_EXT_KL_STRUCT( Vec4, {
         Scalar x;
         Scalar y;
         Scalar z;
         Scalar t;
-      };
+      } );
 
-      struct Quat
-      {
+      FABRIC_EXT_KL_STRUCT( Quat, {
         Vec3 v;
         Scalar w;
-      };
+      } );
       
-      struct Xfo
-      {
+      FABRIC_EXT_KL_STRUCT( Xfo, {
         Quat ori;
         Vec3 tr;
         Vec3 sc;
-      };
+      } );
 
-      struct Mat22
-      {
+      FABRIC_EXT_KL_STRUCT( Mat22, {
         Vec2 row0;
         Vec2 row1;
-      };
+      } );
     
-      struct Mat33
-      {
+      FABRIC_EXT_KL_STRUCT( Mat33, {
         Vec3 row0;
         Vec3 row1;
         Vec3 row2;
-      };
+      } );
     
-      struct Mat44
-      {
+      FABRIC_EXT_KL_STRUCT( Mat44, {
         Vec4 row0;
         Vec4 row1;
         Vec4 row2;
         Vec4 row3;
-      };
+      } );
 
-      template< class Member > class VariableArray
+      template< class Member, bool copyOnWrite = true > class VariableArray
       {
         struct bits_t
         {
