@@ -17,10 +17,16 @@
  __pragma( pack(push, 1) ) \
  struct name content \
  __pragma( pack(pop) )
+# define FABRIC_EXT_KL_CLASS( name, content ) \
+ __pragma( pack(push, 1) ) \
+ class name content \
+ __pragma( pack(pop) )
 #else
 # define FABRIC_EXT_EXPORT extern "C" __attribute__ ((visibility("default")))
 # define FABRIC_EXT_KL_STRUCT( name, content ) \
- struct __attribute__((__packed__)) name content
+ struct name content __attribute__((__packed__))
+# define FABRIC_EXT_KL_CLASS( name, content ) \
+ class name content __attribute__((__packed__))
 #endif
 
 #if defined(FABRIC_OS_LINUX)
@@ -69,8 +75,7 @@ namespace Fabric
       typedef float Scalar;
       typedef void *Data;
     
-      class StringBase
-      {
+      FABRIC_EXT_KL_CLASS( StringBase, {
         struct bits_t
         {
           Util::AtomicSize refCount;
@@ -218,10 +223,9 @@ namespace Fabric
         }
       
         bits_t *m_bits;
-      };
+      } );
     
-      class String : public StringBase
-      {
+      FABRIC_EXT_KL_CLASS( String : public StringBase, {
       public:
     
         String()
@@ -251,7 +255,7 @@ namespace Fabric
         
         typedef StringBase IN;
         typedef StringBase &IO;
-      };
+      });
     
       FABRIC_EXT_KL_STRUCT( RGBA, {
         Byte r;
@@ -320,8 +324,7 @@ namespace Fabric
         Vec4 row3;
       } );
 
-      template< class Member, bool copyOnWrite = true > class VariableArray
-      {
+      template< class Member, bool copyOnWrite = true > FABRIC_EXT_KL_CLASS(VariableArray, {
         struct bits_t
         {
           Util::AtomicSize refCount;
@@ -377,8 +380,7 @@ namespace Fabric
           return m_bits->members[index];
         }
       
-        Member const &operator[]( size_t index ) const
-        {
+        Member const &operator[]( size_t index ) const        {
           return member( index );
         }
       
@@ -443,10 +445,9 @@ namespace Fabric
       private:
     
         bits_t *m_bits;
-      };
+      } );
 
-      template< class Member > class SlicedArray
-      {
+      template< class Member > class SlicedArray {
       public:
     
         SlicedArray( size_t size )
