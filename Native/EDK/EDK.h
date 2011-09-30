@@ -451,7 +451,7 @@ namespace Fabric
     
         bits_t *m_bits;
       }
-      FABRIC_EXT_DECL_END
+      FABRIC_EXT_DECL_END;
 
       FABRIC_EXT_DECL_BEGIN //Note: FABRIC_EXT_KL_CLASS macro can't be used on templated classes
       template< class Member > class SlicedArray {
@@ -508,7 +508,7 @@ namespace Fabric
         size_t m_size;
         VariableArray< Member, false > m_variableArray;
       }
-      FABRIC_EXT_DECL_END
+      FABRIC_EXT_DECL_END;
     };
   };
 };
