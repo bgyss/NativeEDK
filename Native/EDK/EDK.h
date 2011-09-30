@@ -13,20 +13,24 @@
 
 #if defined(FABRIC_OS_WINDOWS)
 # define FABRIC_EXT_EXPORT extern "C" __declspec(dllexport)
+# define FABRIC_EXT_DECL_BEGIN __pragma( pack(push, 1) )
+# define FABRIC_EXT_DECL_END ;__pragma( pack(pop) )
 # define FABRIC_EXT_KL_STRUCT( name, content ) \
- __pragma( pack(push, 1) ) \
+ FABRIC_EXT_DECL_BEGIN \
  struct name content \
- __pragma( pack(pop) )
+ FABRIC_EXT_DECL_END
 # define FABRIC_EXT_KL_CLASS( name, content ) \
- __pragma( pack(push, 1) ) \
+ FABRIC_EXT_DECL_BEGIN \
  class name content \
- __pragma( pack(pop) )
+ FABRIC_EXT_DECL_END
 #else
 # define FABRIC_EXT_EXPORT extern "C" __attribute__ ((visibility("default")))
+# define FABRIC_EXT_DECL_BEGIN
+# define FABRIC_EXT_DECL_END __attribute__((__packed__))
 # define FABRIC_EXT_KL_STRUCT( name, content ) \
- struct name content __attribute__((__packed__))
+ struct name content FABRIC_EXT_DECL_END
 # define FABRIC_EXT_KL_CLASS( name, content ) \
- class name content __attribute__((__packed__))
+ class name content FABRIC_EXT_DECL_END
 #endif
 
 #if defined(FABRIC_OS_LINUX)
@@ -324,7 +328,8 @@ namespace Fabric
         Vec4 row3;
       } );
 
-      template< class Member, bool copyOnWrite = true > FABRIC_EXT_KL_CLASS(VariableArray, {
+      FABRIC_EXT_DECL_BEGIN //Note: FABRIC_EXT_KL_CLASS macro can't be used on templated classes
+      template< class Member, bool copyOnWrite = true > class VariableArray {
         struct bits_t
         {
           Util::AtomicSize refCount;
@@ -445,8 +450,10 @@ namespace Fabric
       private:
     
         bits_t *m_bits;
-      } );
+      }
+      FABRIC_EXT_DECL_END
 
+      FABRIC_EXT_DECL_BEGIN //Note: FABRIC_EXT_KL_CLASS macro can't be used on templated classes
       template< class Member > class SlicedArray {
       public:
     
@@ -500,7 +507,8 @@ namespace Fabric
         size_t m_offset;
         size_t m_size;
         VariableArray< Member, false > m_variableArray;
-      };
+      }
+      FABRIC_EXT_DECL_END
     };
   };
 };
