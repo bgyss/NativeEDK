@@ -134,7 +134,8 @@ buildFlags = {
     'ccDefs': [ 
       '_SCL_SECURE_NO_WARNINGS=1',
       '_ITERATOR_DEBUG_LEVEL=0',
-      '_SECURE_SCL=0'
+      '_SECURE_SCL=0',
+      '_WIN32_WINNT=0x0501'
     ],
     'ccflags': [ 
       '/EHsc', 
