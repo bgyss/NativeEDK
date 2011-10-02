@@ -65,6 +65,16 @@ namespace Fabric
       return m_desc.getCString();
     }
 
+    char const *getData() const
+    {
+      return m_desc.getData();
+    }
+
+    size_t getLength() const
+    {
+      return m_desc.getLength();
+    }
+
   private:
   
     Util::SimpleString m_desc;
