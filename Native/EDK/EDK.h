@@ -13,8 +13,24 @@
 
 #if defined(FABRIC_OS_WINDOWS)
 # define FABRIC_EXT_EXPORT extern "C" __declspec(dllexport)
+# define FABRIC_EXT_DECL_BEGIN __pragma( pack(push, 1) )
+# define FABRIC_EXT_DECL_END ;__pragma( pack(pop) )
+# define FABRIC_EXT_KL_STRUCT( name, content ) \
+ FABRIC_EXT_DECL_BEGIN \
+ struct name content \
+ FABRIC_EXT_DECL_END
+# define FABRIC_EXT_KL_CLASS( name, content ) \
+ FABRIC_EXT_DECL_BEGIN \
+ class name content \
+ FABRIC_EXT_DECL_END
 #else
 # define FABRIC_EXT_EXPORT extern "C" __attribute__ ((visibility("default")))
+# define FABRIC_EXT_DECL_BEGIN
+# define FABRIC_EXT_DECL_END __attribute__((__packed__))
+# define FABRIC_EXT_KL_STRUCT( name, content ) \
+ struct name content FABRIC_EXT_DECL_END
+# define FABRIC_EXT_KL_CLASS( name, content ) \
+ class name content FABRIC_EXT_DECL_END
 #endif
 
 #if defined(FABRIC_OS_LINUX)
@@ -63,8 +79,7 @@ namespace Fabric
       typedef float Scalar;
       typedef void *Data;
     
-      class StringBase
-      {
+      FABRIC_EXT_KL_CLASS( StringBase, {
         struct bits_t
         {
           Util::AtomicSize refCount;
@@ -212,10 +227,9 @@ namespace Fabric
         }
       
         bits_t *m_bits;
-      };
+      } );
     
-      class String : public StringBase
-      {
+      FABRIC_EXT_KL_CLASS( String : public StringBase, {
       public:
     
         String()
@@ -245,88 +259,77 @@ namespace Fabric
         
         typedef StringBase IN;
         typedef StringBase &IO;
-      };
+      });
     
-      struct RGBA
-      {
+      FABRIC_EXT_KL_STRUCT( RGBA, {
         Byte r;
         Byte g;
         Byte b;
         Byte a;
-      };
+      } );
     
-      struct RGB
-      {
+      FABRIC_EXT_KL_STRUCT( RGB, {
         Byte r;
         Byte g;
         Byte b;
-      };
+      } );
     
-      struct Color
-      {
+      FABRIC_EXT_KL_STRUCT( Color, {
         Scalar r;
         Scalar g;
         Scalar b;
         Scalar a;
-      };
+      } );
       
-      struct Vec2
-      {
+      FABRIC_EXT_KL_STRUCT( Vec2, {
         Scalar x;
         Scalar y;
-      };
+      } );
     
-      struct Vec3
-      {
+      FABRIC_EXT_KL_STRUCT( Vec3, {
         Scalar x;
         Scalar y;
         Scalar z;
-      };
+      } );
     
-      struct Vec4
-      {
+      FABRIC_EXT_KL_STRUCT( Vec4, {
         Scalar x;
         Scalar y;
         Scalar z;
         Scalar t;
-      };
+      } );
 
-      struct Quat
-      {
+      FABRIC_EXT_KL_STRUCT( Quat, {
         Vec3 v;
         Scalar w;
-      };
+      } );
       
-      struct Xfo
-      {
+      FABRIC_EXT_KL_STRUCT( Xfo, {
         Quat ori;
         Vec3 tr;
         Vec3 sc;
-      };
+      } );
 
-      struct Mat22
-      {
+      FABRIC_EXT_KL_STRUCT( Mat22, {
         Vec2 row0;
         Vec2 row1;
-      };
+      } );
     
-      struct Mat33
-      {
+      FABRIC_EXT_KL_STRUCT( Mat33, {
         Vec3 row0;
         Vec3 row1;
         Vec3 row2;
-      };
+      } );
     
-      struct Mat44
-      {
+      FABRIC_EXT_KL_STRUCT( Mat44, {
         Vec4 row0;
         Vec4 row1;
         Vec4 row2;
         Vec4 row3;
-      };
+      } );
 
-      template< class Member > class VariableArray
-      {
+      FABRIC_EXT_DECL_BEGIN //Note: FABRIC_EXT_KL_CLASS macro can't be used on templated classes
+      template< class Member, bool copyOnWrite = true > class VariableArray {
         struct bits_t
         {
           Util::AtomicSize refCount;
@@ -382,13 +385,13 @@ namespace Fabric
           return m_bits->members[index];
         }
       
-        Member const &operator[]( size_t index ) const
-        {
+        Member const &operator[]( size_t index ) const        {
           return member( index );
         }
       
         Member &member( size_t index )
         {
+          // [pzion 20110928] FIXME: we should split here if our reference count is greater than one
           return m_bits->members[index];
         }
       
@@ -404,6 +407,9 @@ namespace Fabric
       
         void resize( size_t size )
         {
+          if ( !copyOnWrite )
+            throwException( "cannot resize a non-copy-on-write variable array" );
+            
           if ( (!m_bits && size > 0)
             || (m_bits && m_bits->refCount.getValue() > 1)
             || (m_bits && size == 0)
@@ -444,10 +450,11 @@ namespace Fabric
       private:
     
         bits_t *m_bits;
-      };
+      }
+      FABRIC_EXT_DECL_END;
 
-      template< class Member > class SlicedArray
-      {
+      FABRIC_EXT_DECL_BEGIN //Note: FABRIC_EXT_KL_CLASS macro can't be used on templated classes
+      template< class Member > class SlicedArray {
       public:
     
         SlicedArray( size_t size )
@@ -499,8 +506,9 @@ namespace Fabric
     
         size_t m_offset;
         size_t m_size;
-        VariableArray<Member> m_variableArray;
-      };
+        VariableArray< Member, false > m_variableArray;
+      }
+      FABRIC_EXT_DECL_END;
     };
   };
 };

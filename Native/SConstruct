@@ -29,11 +29,11 @@ FABRIC_COPYRIGHT='Copyright 2010-2011 ' + FABRIC_COMPANY_NAME + '  All rights re
 FABRIC_URL="http://fabric-engine.com"
 FABRIC_VERSION_MAJ='1'
 FABRIC_VERSION_MIN='0'
-FABRIC_VERSION_REV='12'
-FABRIC_VERSION_SUFFIX='-alpha'
+FABRIC_VERSION_REV='13'
+FABRIC_VERSION_SUFFIX='-beta'
 # To generate expiry 30 days from now: echo $(($(date +%s) + 30*24*60*60))
-FABRIC_EXPIRY='1318795731'
-FABRIC_CACHE_GENERATION='9'
+FABRIC_EXPIRY='1319906042'
+FABRIC_CACHE_GENERATION='11'
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 FABRIC_VERSION = FABRIC_VERSION_MAJ + '.' + FABRIC_VERSION_MIN + '.' + FABRIC_VERSION_REV + FABRIC_VERSION_SUFFIX
@@ -58,8 +58,9 @@ template = Builder( action = "\
   <$SOURCE >$TARGET \
 " )
 
+path = os.environ['PATH']+os.pathsep+os.path.join(thirdPartyDir,'bin',buildOS)
 env = Environment(
-  ENV={ 'PATH': os.environ['PATH']+os.pathsep+os.path.join(thirdPartyDir,'bin',buildOS) },
+  ENV={ 'PATH': path },
   FABRIC_BUILD_OS=buildOS,
   FABRIC_BUILD_ARCH=buildArch,
   FABRIC_BUILD_TYPE=buildType,
@@ -68,6 +69,11 @@ env = Environment(
 
 if buildOS == 'Windows':
   env['ENV']['TMP'] = os.environ['TMP']
+
+if buildOS == 'Darwin':
+  #env.Replace( CC = 'gcc-4.2' )
+  #env.Replace( CXX = 'g++-4.2' )
+  env.Replace( YACC = '/opt/local/bin/bison' )
 
 if not ARGUMENTS.get( 'VERBOSE' ):
 	env['CCCOMSTR']       = 'Compiling       $SOURCE'
@@ -92,8 +98,8 @@ if buildOS == 'Windows' and buildType == 'Debug':
 buildFlags = { 
   # === OSX ===
   'Darwin': {
-    'ccflags': [ '-Wall', '-Werror', '-fvisibility=hidden' ],
-    'linkflags' : [ '-w' ],
+    'ccflags': [ '-Wall', '-fvisibility=hidden', '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk' ],
+    'linkflags' : [ '-w', '-isysroot', '/Developer/SDKs/MacOSX10.6.sdk' ],
     'universal' : {
       'ccflags': [ '-arch', 'i386', '-arch', 'x86_64' ],
       'linkflags': [ '-arch', 'i386', '-arch', 'x86_64' ]
@@ -128,7 +134,8 @@ buildFlags = {
     'ccDefs': [ 
       '_SCL_SECURE_NO_WARNINGS=1',
       '_ITERATOR_DEBUG_LEVEL=0',
-      '_SECURE_SCL=0'
+      '_SECURE_SCL=0',
+      '_WIN32_WINNT=0x0501'
     ],
     'ccflags': [ 
       '/EHsc', 
